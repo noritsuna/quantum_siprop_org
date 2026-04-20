@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>SIProp量子化計画</title>
+	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
+	<link>https://quantum.siprop.org</link>
+	<description>quantum computing</description>
+	<lastBuildDate>Tue, 09 Jan 2024 10:23:18 +0000</lastBuildDate>
+	<language>ja</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.9.4</generator>
+	<item>
+		<title>見えてきた自作QPU</title>
+		<link>https://quantum.siprop.org/handmade_qpu/</link>
+					<comments>https://quantum.siprop.org/handmade_qpu/#respond</comments>
+		
+		<dc:creator><![CDATA[ImamuraNoritsuna]]></dc:creator>
+		<pubDate>Fri, 15 Dec 2023 15:00:00 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1744</guid>
+
+					<description><![CDATA[<p>本投稿は「量子コンピュータ Advent Calendar 2023」の16日目の記事となります。 はじめに 去年の「OpenMPWで作るQPUの可能性」を覚えておりますでしょうか？QPUの自作の可能性を考えた記事です。&#8230; <br /> <a class="read-more" href="/handmade_qpu/">もっと読む</a></p>
+<p>The post <a href="/handmade_qpu/" target="_blank">見えてきた自作QPU</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<p>本投稿は「<a href="https://qiita.com/advent-calendar/2022/quantum" target="_blank" rel="noreferrer noopener">量子コンピュータ Advent Calendar 2023</a>」の16日目の記事となります。</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h2 class="wp-block-heading">はじめに</h2>
+
+
+
+<p>去年の「<a href="/openmpw_qpu/">OpenMPWで作るQPUの可能性</a>」を覚えておりますでしょうか？QPUの自作の可能性を考えた記事です。今回は、その続きとなります。</p>
+
+
+
+<h2 class="wp-block-heading">前工程を制する</h2>
+
+
+
+<p>QPUを作るうえで一番重要なのが、半導体の前工程と言われる「半導体を実際に製造する」部分となります。なぜかといえば、酸化膜の厚みの調整やP形班東大やN型半導体の形成時の拡散層の厚みやポリシリコンの厚みや形などが重要となってくるからです。</p>
+
+
+
+<p>そこで、半導体の前工程をマスターしてきました！！！</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img fetchpriority="high" decoding="async" width="1365" height="768" src="/wp-content/uploads/2023/12/semicon_graduation_certificate.jpg" alt="" class="wp-image-1747"/></figure>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img decoding="async" width="326" height="397" src="/wp-content/uploads/2023/12/my_silicon.jpg" alt="" class="wp-image-1748"/><figcaption>自分で作った半導体と一緒に</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading">何をしてきたのか？</h2>
+
+
+
+<p>こちらのファブでは、全55工程あるのですが、その中からQPUの設計・製造に重要そうな部分を抜粋すると</p>
+
+
+
+<h4 class="wp-block-heading">膜の成型</h4>
+
+
+
+<p>まずは、一番重要な酸化膜を形成します。電気炉の中に必要な酸化剤を充填して焼き付ける工程となります。ここでの焼き付ける時間などを調整することで、酸化膜の厚さを自在に調整することが可能です。</p>
+
+
+
+<p>これで、一歩自作QPUへの道が開けました！</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img decoding="async" width="1024" height="768" src="/wp-content/uploads/2023/12/oxidation_furnace.jpg" alt="" class="wp-image-1746"/><figcaption>酸化膜成型用の炉</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2023/12/wafer_in_oxidation_furnace.jpg" alt="" class="wp-image-1745"/><figcaption>バーニング！！！</figcaption></figure>
+
+
+
+<h4 class="wp-block-heading">マスク</h4>
+
+
+
+<p>続いて、不要な酸化膜を除去して、必要な部分のみに酸化膜を残す工程です。マスクを用いて、フォトレジストを塗り、露光して、現像します。要は、銀塩写真と同じ工程です。</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="1366" height="767" src="/wp-content/uploads/2023/12/silicon_mask.jpg" alt="" class="wp-image-1751"/></figure>
+
+
+
+<h4 class="wp-block-heading">フォトレジストを塗る</h4>
+
+
+
+<p>私が自らの手で、フォトレジストを塗り付ける！まぁ、薬品を垂らすだけで、あとは機械が自動でやってくれるんですが・・・（正確には、このフォトレジストの厚さをちょうどよくするために、どのくらいの量にすべきか？など考慮することはあります。）</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="580" height="463" src="/wp-content/uploads/2023/12/photo_reg.jpg" alt="" class="wp-image-1749"/></figure>
+
+
+
+<h4 class="wp-block-heading">露光機へ</h4>
+
+
+
+<p>続いて、露光します。一台5億円くらいするらしいです。誰か、おごって！</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="1366" height="767" src="/wp-content/uploads/2023/12/exposure.jpg" alt="" class="wp-image-1752"/></figure>
+
+
+
+<h4 class="wp-block-heading">現像する</h4>
+
+
+
+<p>現像液につけて、しゃばしゃばするだけですが・・・</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2023/12/developing.jpg" alt="" class="wp-image-1753"/></figure>
+
+
+
+<h4 class="wp-block-heading">出来上がり</h4>
+
+
+
+<p>これで「1工程分」の膜成型～フォトレジスト～露光～現像が終わりました。あとは、これを半導体の層の分だけやるだけです・・・全55工程あります・・・</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2023/12/inverter.jpg" alt="" class="wp-image-1750"/></figure>
+
+
+
+<h2 class="wp-block-heading">まとめ</h2>
+
+
+
+<p>ちなみに、これを全工程回すと、手慣れた人で2週間、初めてだと2～3か月ほどかかるらしいです。</p>
+
+
+
+<p>ということで、QPUが自作できることは見えてきたけど、実際にやるのは大変だというを身をもって、体験してきました。</p>
+
+
+
+<p>もし、この挑戦をしたい方、ぜひ、ご一緒に！！！</p><p>The post <a href="/handmade_qpu/" target="_blank">見えてきた自作QPU</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/handmade_qpu/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>OpenMPWで作るQPUの可能性</title>
+		<link>https://quantum.siprop.org/openmpw_qpu/</link>
+					<comments>https://quantum.siprop.org/openmpw_qpu/#respond</comments>
+		
+		<dc:creator><![CDATA[ImamuraNoritsuna]]></dc:creator>
+		<pubDate>Sun, 11 Dec 2022 15:00:00 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<category><![CDATA[openmpw]]></category>
+		<category><![CDATA[QPU]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1730</guid>
+
+					<description><![CDATA[<p>本投稿は「量子コンピュータ Advent Calendar 2022」の12日目の記事となります。 はじめに みなさま、ご存じでしょうか？OpenMPWプログラムというものを！ Google社が主催する無料で独自設計のA&#8230; <br /> <a class="read-more" href="/openmpw_qpu/">もっと読む</a></p>
+<p>The post <a href="/openmpw_qpu/" target="_blank">OpenMPWで作るQPUの可能性</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<p>本投稿は「<a href="https://qiita.com/advent-calendar/2022/quantum" target="_blank" rel="noreferrer noopener">量子コンピュータ Advent Calendar 2022</a>」の12日目の記事となります。</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h2 class="wp-block-heading">はじめに</h2>
+
+
+
+<p>みなさま、ご存じでしょうか？<a href="https://efabless.com/open_shuttle_program" target="_blank" rel="noreferrer noopener">OpenMPWプログラム</a>というものを！</p>
+
+
+
+<p>Google社が主催する<strong>無料で独自設計のASIC(シリコン</strong>)を作ることができるプログラムです！（<a href="https://developers.google.com/silicon?hl=ja" target="_blank" rel="noreferrer noopener">公式サイト</a>）細かいことは省いて、皆さんが気になるであろうことを表にすると下記のような感じです。</p>
+
+
+
+<figure class="wp-block-table"><table><tbody><tr><td><strong>主催</strong></td><td><strong>Google</strong><strong>社</strong></td></tr><tr><td><strong>ファブ</strong></td><td><strong>SkyWater Technology Foundry</strong><strong>社</strong></td></tr><tr><td><strong>プロセスルール</strong></td><td><strong>130nm</strong></td></tr><tr><td><strong>レイヤー数</strong></td><td><strong>6</strong><strong>層</strong></td></tr><tr><td><strong>ユーザエリアサイズ</strong></td><td><strong>10mm * 10mm</strong></td></tr><tr><td><strong>パッケージ</strong></td><td><strong>WCSP(Wafer-Level Chips Size Package)</strong></td></tr><tr><td><strong>製造チップ数</strong></td><td><strong>300</strong><strong>個</strong></td></tr><tr><td><strong>評価ボード（電源やデバッグ用ポートを装備）</strong></td><td><strong>5</strong><strong>枚</strong></td></tr><tr><td><strong>シャトルタイミング</strong></td><td><strong>偶数月に</strong><strong>1</strong><strong>回</strong><strong>（</strong><strong>40</strong><strong>プロジェクトがランダムで採択）</strong></td></tr><tr><td><strong>料金</strong></td><td><strong>無料（有料プラン有り）</strong></td></tr><tr><td><strong>ツール類</strong></td><td><strong>全てオープンソースソフトウェアとして公開</strong></td></tr><tr><td><strong>制限</strong></td><td><strong>製造した回路はオープンソースで公開する必要がある（有料プランでは不要）</strong></td></tr></tbody></table><figcaption>表1、OpenMPWのスペック表</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading">サイズはOK？</h2>
+
+
+
+<p>現在の最先端プロセスルールが「<strong>3～5nm</strong>」ですので、太古の昔のプロセスルールではありますが、研究レベルで試作される<strong>QPUが90nm</strong>くらいを利用しております。さらに、ユーザエリアサイズが10mm x 10mmとなっており、<strong>4qubitのQPUが90nmで作った場合、10mm x 10mmサイズ</strong>となります。すなわち、<strong>2～4qubitのQPUを作るには十分なスペック</strong>といえるのではないでしょうか！（※<strong>来年にはSkyWater 90nm</strong>のシャトルも予定されています。余談ですがGlobalFoundries 180nmは2022/12にスタートしました。）</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1200" height="489" src="/wp-content/uploads/2022/12/CARAVEL.png" alt="" class="wp-image-1732"/><figcaption>図1、OpenMPWのチップの実際</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading">トランズモン素子はOK？</h2>
+
+
+
+<p>では、肝心の<strong>トランズモン素子を設計</strong>することはできるのでしょうか？一点懸念点はありますが、<strong>可能です</strong>！</p>
+
+
+
+<p>図2はアナログ回路のエディターで、PCB CADでいうところの回路図エディターです。これで、独自の素子や回路を作ることができます。ただ、数qubitであれば、図3のレイアウトエディターというPCB CADでいうところのPCBレイアウト（アートワーク）エディターで、作ってしまうほうが楽だと思います。（※アナログ回路でやる場合、PDKというライブラリをいじる必要が出る可能性があるためです）</p>
+
+
+
+<p>そして、懸念点ですが、絶縁被膜などの厚さなどは調整できません。そのため、電圧を上げたりなどでうまく設計しないと<strong>トンネル効果を起こすことが難しい</strong>可能性があります。しかし「無料で2～3か月に一回」はシャトルがありますので、これを利用して<strong>何回も試行錯誤することでこの問題は解決できる</strong>のではないかと考えています。（※実際に、何度もバージョンを変えて出している方々もいます）</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1522" height="850" src="/wp-content/uploads/2022/12/top_window.png" alt="" class="wp-image-1733"/><figcaption>図2、アナログ回路エディター</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1282" height="846" src="/wp-content/uploads/2022/12/OpenMPW_care.png" alt="" class="wp-image-1734"/><figcaption>図3、レイアウトエディター</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading">まとめ</h2>
+
+
+
+<p>ということで、簡単ではありましたが、<strong>自作QPUの可能性</strong>を感じていただけたのではないでしょうか？もし、我こそは！という方がいれば、ぜひチャレンジしてみてください！<strong>私のほうにお声がけいただければ、全力でサポート</strong>いたします！</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h2 class="wp-block-heading">その先はOK？</h2>
+
+
+
+<p>ただ、試作できたとしても、動作させるには希釈冷凍機を用意しないといけないので、そこが次のハードルとなりますが。。。あっ、<a href="/next_design_for_microwave_quantum_firmware/" target="_blank" rel="noreferrer noopener">コントローラは未踏の成果</a>があるので、どうにかなります！（本投稿のQPUは「超電導量子コンピュータ向け」を想定しております）</p><p>The post <a href="/openmpw_qpu/" target="_blank">OpenMPWで作るQPUの可能性</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/openmpw_qpu/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>8 bit</title>
+		<link>https://quantum.siprop.org/8-bit/</link>
+					<comments>https://quantum.siprop.org/8-bit/#respond</comments>
+		
+		<dc:creator><![CDATA[HirotakaNiisato]]></dc:creator>
+		<pubDate>Sat, 15 Jan 2022 04:43:00 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1433</guid>
+
+					<description><![CDATA[<p>8 bit is an application work uses the operating principle of a superconducting quantum computer gate control m&#8230; <br /> <a class="read-more" href="/8-bit/">もっと読む</a></p>
+<p>The post <a href="/8-bit/" target="_blank">8 bit</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<div class='embed-container'><iframe loading="lazy" title="8bit" width="1920" height="1080" src="https://www.youtube.com/embed/ts4WP3nBXMc?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+</div></figure>
+
+
+
+<p>8 bit is an application work uses the operating principle of a superconducting quantum computer gate control microwaves.<br>Currently, there are a many applications works&amp;interaction based classical computers architecture, but by using the quantum computers is few yet. In the future, many quantum computers applications will be created to emerge.<br>Then I focus on superconducting quantum computers in qbit gate control microwaves, propose the interaction between qbit and human and everyone could touch and try this application.</p>
+
+
+
+<p>8 bit main feature is convert microwaves (radio waves) in the qbit gate control of the superconducting quantum computer to sound waves in real time and show them as a Chladni figure. In many cases, qbit gate control(for programming&amp;circuits on quantum computer) is used as Bloch spheres, but qbit is shown as Chladni figure in this work, so that can see the gate control as a figure and understand the movement.<br>This work makes an attempt to have quantum indeterminacy with participants. The qbit state is determined by us, the viewer of the Chladni figure. In other words, the qbit state is determined by the interaction between the us and the qbit representation(Chladni figure), since the indeterminate qbit state is determined by the particles (sand) that make up the Chladni figure at the moment we are looking at it. And, I have also found that it is possible to represent quantum entanglement between qbits by sound waves transmitted in space.<br>The qbit coherence time is a very long compared to the actually quantum computer (actually is very short nsec time) in this work gate control microwave, so the collapse of the qbit state can be visualized by the indeterminate movement of the particles (sand) that make up the Chladni figure and their fall down.</p>
+
+
+
+<p>8bitは、超伝導型量子コンピュータのゲート制御マイクロ波による動作原理を利用しています。<br>現在、多くのアプリケーションワークは古典的なコンピュータを利用していて、量子コンピュータを使用した物は非常に少ないです。将来的には多くの量子コンピュータのアプリケーションが出てくると予想されます。<br>そこで、超伝導型量子コンピュータの量子ゲート制御を行うマイクロ波に着目し、誰でも触ってみることができる量子ビットと人間とのインタラクションを提案する。</p>
+
+
+
+<p>8bitの最大の特徴は、超伝導量子コンピュータのqbitゲート制御におけるマイクロ波（電波）をリアルタイムに音波に変換し、クラドニ図形として表示することである。多くの場合、qbitゲート制御(量子コンピューター上でのプログラミング・回路で利用される)はブロッホ球として扱われるが、本作品ではqbitをクラドニ図形として示すことで、ゲート制御におけるマイクロ波を図形として見ることができ、動きを理解することができる。<br>この作品では、人とqbitとの間に量子的な不確定性を持たせることを試みている。量子ビットの状態は、クラドニ図形を見る私たちによって決定される。つまり、私たちが見ている瞬間のクラドニ図形を構成する粒子（砂）によって不確定なqbit状態が決定されるため、私たちとqbit表現（クラドニ図形）の間の相互作用によってqbit状態が決定される。また空間上を伝わる音波によって、qbit間の量子もつれも表現する事も可能なことを確認している。<br>この作品のゲート制御マイクロ波では、qbitのコヒーレンス時間が実際の量子コンピュータに比べて非常に長い（実際には非常に短いnsec時間）ため、qbit状態の崩壊は、クラドニ図を構成する粒子（砂）の不定な動きとその落下によって視覚化している。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="576" src="/wp-content/uploads/2022/01/app-2.png" alt="" class="wp-image-1723"/></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1240" height="1753" src="/wp-content/uploads/2020/10/8bit_quantum_computer_flyer.jpg" alt="" class="wp-image-1435"/><figcaption>Maker Faire Tokyo 2020 flyer</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4911.png" alt="" class="wp-image-1438"/></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4910-1.png" alt="" class="wp-image-1441"/></figure>
+
+
+
+<p><em>Awards: <a href="https://j-mediaarts.jp/award/entertainment/" target="_blank" rel="noreferrer noopener">メディア芸術祭 エンターテイメント</a><a href="https://j-mediaarts.jp/award/single/8bit/" target="_blank" rel="noreferrer noopener">部門 </a><a href="https://j-mediaarts.jp/award/entertainment/" target="_blank" rel="noreferrer noopener">審査委員会推薦作品</a></em><br><em>Event: <a href="https://makezine.jp/event/mft2020/" target="_blank" rel="noreferrer noopener">Maker Faire Tokyo 2020</a>, <a href="https://www.iamas.ac.jp/iamasbooks/event/ogaki-mini-maker-faire-2020/" target="_blank" rel="noreferrer noopener">Ogaki Mini Maker Faire 2020(online)</a></em><br><em>Support: IPA 未踏ターゲット ゲート式量子コンピュータ向けソフトウェア開発</em><br><em>Documents: <a href="https://www.ipa.go.jp/jinzai/target/2020/gaiyou_ty-2.html" target="_blank" rel="noreferrer noopener">量子コンパイル基盤の最適化処理・分岐並列制御の開発と量子計算を体感するプレゼンテーション</a></em> （2020）<em> <a href="https://www.ipa.go.jp/files/000091248.pdf" target="_blank" rel="noreferrer noopener">成果概要</a> <a href="https://www.ipa.go.jp/files/000091249.pdf" target="_blank" rel="noreferrer noopener">詳細</a><br><a href="https://www.ipa.go.jp/jinzai/target/2019/gaiyou_ty-3.html" target="_blank" rel="noreferrer noopener">RISC-V量子拡張の参照実装とマイクロ波制御量子ファームウェアの開発</a>（2019） <a href="https://www.ipa.go.jp/files/000091224.pdf" target="_blank" rel="noreferrer noopener">成果</a><a href="https://www.ipa.go.jp/files/000091223.pdf" target="_blank" rel="noreferrer noopener">概要</a> <a href="https://www.ipa.go.jp/files/000091224.pdf" target="_blank" rel="noreferrer noopener">詳細</a></em><br><em><a href="https://www.slideshare.net/noritsuna/principle-representation-of-the-8-qubits-quantum-computer-by-raspberrypi" target="_blank" rel="noreferrer noopener">Principle Representation of The 8 Qubits Quantum Computer by RaspberryPi</a><br>Introductory Article : <a href="https://makezine.jp/blog/2020/11/mft2020_8bit-quntum-computer.html" target="_blank" rel="noreferrer noopener">「Maker Faire Tokyo 2020」レポート #5</a> ,<a href="https://xtech.nikkei.com/atcl/nxt/column/18/00001/04699/" target="_blank" rel="noreferrer noopener"> パケットや量子ビットはどう動く？Maker Faire Tokyoで可視化装置に注目集まる</a></em></p>
+
+
+
+<p></p><p>The post <a href="/8-bit/" target="_blank">8 bit</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/8-bit/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>RISC-V RVV 0.8.x spike/pk add K Extension</title>
+		<link>https://quantum.siprop.org/risc-v-rvv-0-8-x-spike-pk/</link>
+					<comments>https://quantum.siprop.org/risc-v-rvv-0-8-x-spike-pk/#respond</comments>
+		
+		<dc:creator><![CDATA[HirotakaNiisato]]></dc:creator>
+		<pubDate>Tue, 19 Jan 2021 13:03:15 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1643</guid>
+
+					<description><![CDATA[<p>RISC-V RVV(Vector Extenstion)を使いたいとのことで、環境構築を行った。RVVの仕様は絶賛策定＆実装中のようで、現在は0.9.xが開発版、安定版リリースは0.8.xになっている。仕様はこちら r&#8230; <br /> <a class="read-more" href="/risc-v-rvv-0-8-x-spike-pk/">もっと読む</a></p>
+<p>The post <a href="/risc-v-rvv-0-8-x-spike-pk/" target="_blank">RISC-V RVV 0.8.x spike/pk add K Extension</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<p>RISC-V RVV(Vector Extenstion)を使いたいとのことで、環境構築を行った。<br>RVVの仕様は絶賛策定＆実装中のようで、現在は0.9.xが開発版、安定版リリースは0.8.xになっている。<br>仕様はこちら <a href="https://github.com/riscv/riscv-v-spec" target="_blank" rel="noreferrer noopener">riscv-v-spec</a><br><br>gnu toolchain/エミュレータのspikeの対応はv0.8までと書いてあるけど、0.9でも動くらしい(?)ということもあったり、開発版は仕様策定とともに動きが激しい(だろう&#8230;)というのもあって、0.8.xでのビルドを行う。<br>ちなみに、最近は全部dockerで環境構築をしている。VirtualBoxとかUbuntuだったら何でもビルドは出来ると思われ。<br>ちなみに、このrepositoryは独自IS量子拡張用 k extensionの実装(gccを改造して独自の命令セットの追加、エミュレータ側でも処理可能)を加えたものになっている。</p>
+
+
+
+<p><code># use docker ubuntu 20.04 as root<br>apt-get update<br>apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev git cmake device-tree-compiler liboscpack-dev liboscpack1<br> <br>cd $HOME<br>mkdir work<br>mkdir work/riscv<br>export RISCV=/root/work/riscv<br><br># make gnu toolchain<br>cd $HOME/work<br>git clone https://github.com/openql-org/riscv-gnu-toolchain -b niisato-develop<br>cd riscv-gnu-toolchain<br>git submodule update --init --recursive<br>mkdir build<br>cd build<br>../configure --prefix=/root/work/riscv --enable-multilib<br>make<br>export PATH=$PATH:$RISCV/bin<br><br># get riscv tools<br>cd $HOME/work<br>git clone https://github.com/openql-org/riscv-tools -b develop-openql-wip<br>cd riscv-tools<br>git submodule update --init --recursive<br><br># make QuEST<br>cd $HOME/work/riscv-tools/QuEST<br>mkdir build<br>cd build<br>cmake ..<br>make<br><br># make spike<br>cd $HOME/work/riscv-tools/riscv-isa-sim<br>mkdir build<br>cd build<br>../configure --prefix=/root/work/riscv<br>make CFLAGS=-DQUEST CPPFLAGS=-DQUEST<br>make install<br><br># make pk<br>cd $HOME/work/riscv-tools/riscv-pk/<br>mkdir build<br>cd build<br>../configure --prefix=/root/work/riscv --host=riscv64-unknown-elf<br>make<br>make install<br>export PATH=$PATH:/root/work/riscv/riscv64-unknown-elf/bin/</code></p>
+
+
+
+<p><br>RVVの<a href="https://github.com/msyksphinz/training/tree/master/risc-v/rvv" target="_blank" rel="noreferrer noopener">テストコード</a>をお借りして&#8230;コンパイルして実行。</p>
+
+
+
+<p><code>riscv64-unknown-elf-gcc -o -O3 -march=rv64gcv rvv.c -o rvv<br></code><br>spike pk rvv <br>bbl loader<br>calling v_test<br>0.000000, 127.000000, 252.000000, 375.000000, 496.000000, 615.000000, 732.000000, 847.000000, 960.000000, 1071.000000,&nbsp;<br>1180.000000, 1287.000000, 1392.000000, 1495.000000, 1596.000000, 1695.000000, 1792.000000, 1887.000000, 1980.000000, 2071.000000,&nbsp;<br>2160.000000, 2247.000000, 2332.000000, 2415.000000, 2496.000000, 2575.000000, 2652.000000, 2727.000000, 2800.000000, 2871.000000,&nbsp;<br>2940.000000, 3007.000000, 3072.000000, 3135.000000, 3196.000000, 3255.000000, 3312.000000, 3367.000000, 3420.000000, 3471.000000,&nbsp;<br>3520.000000, 3567.000000, 3612.000000, 3655.000000, 3696.000000, 3735.000000, 3772.000000, 3807.000000, 3840.000000, 3871.000000,&nbsp;<br>3900.000000, 3927.000000, 3952.000000, 3975.000000, 3996.000000, 4015.000000, 4032.000000, 4047.000000, 4060.000000, 4071.000000,&nbsp;<br>4080.000000, 4087.000000, 4092.000000, 4095.000000, 4096.000000, 4095.000000, 4092.000000, 4087.000000, 4080.000000, 4071.000000,&nbsp;<br>4060.000000, 4047.000000, 4032.000000, 4015.000000, 3996.000000, 3975.000000, 3952.000000, 3927.000000, 3900.000000, 3871.000000,&nbsp;<br>3840.000000, 3807.000000, 3772.000000, 3735.000000, 3696.000000, 3655.000000, 3612.000000, 3567.000000, 3520.000000, 3471.000000,&nbsp;<br>3420.000000, 3367.000000, 3312.000000, 3255.000000, 3196.000000, 3135.000000, 3072.000000, 3007.000000, 2940.000000, 2871.000000,&nbsp;<br>2800.000000, 2727.000000, 2652.000000, 2575.000000, 2496.000000, 2415.000000, 2332.000000, 2247.000000, 2160.000000, 2071.000000,&nbsp;<br>1980.000000, 1887.000000, 1792.000000, 1695.000000, 1596.000000, 1495.000000, 1392.000000, 1287.000000, 1180.000000, 1071.000000,&nbsp;</p>
+
+
+
+<p></p>
+
+
+
+<p>一応、docker hubにビルド済イメージを登録しておいた。テストコードは上記のrvvに量子用命令セットの実行を追加したものをspikeで動かす。<br><br><code>docker pull siprop/ubuntu:rvv0.8<br>docker run --name test -it siprop/ubuntu:rvv0.8 bash<br>cd /root/test<br>riscv64-unknown-elf-gcc -o -O3 -march=rv64imafdkv test.c -o test<br>spike -q2 -r4 pk test</code></p>
+
+
+
+<p>#qregister size : 4<br>#qbit size&nbsp; &nbsp; &nbsp; : 2<br>bbl loader<br>calling v_test<br>0.000000, 127.000000, 252.000000, 375.000000, 496.000000, 615.000000, 732.000000, 847.000000, 960.000000, 1071.000000,&nbsp;<br>1180.000000, 1287.000000, 1392.000000, 1495.000000, 1596.000000, 1695.000000, 1792.000000, 1887.000000, 1980.000000, 2071.000000,&nbsp;<br>&#8212;- 中略 &#8212;&#8211;<br>1980.000000, 1887.000000, 1792.000000, 1695.000000, 1596.000000, 1495.000000, 1392.000000, 1287.000000, 1180.000000, 1071.000000,&nbsp;<br>qooh.k (rd)10, (rs1)1, (rs2)0, (qimm6)1<br>qbit_idx : 3<br>qooh.k (rd)15, (rs1)1, (rs2)0, (qimm6)1<br>qbit_idx : 3</p>
+
+
+
+<p>RISC-Vに独自拡張した命令セットとRVV系を同時に動かしても大丈夫なことが確認できた。</p><p>The post <a href="/risc-v-rvv-0-8-x-spike-pk/" target="_blank">RISC-V RVV 0.8.x spike/pk add K Extension</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/risc-v-rvv-0-8-x-spike-pk/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Ogaki Mini Maker Faire 2020</title>
+		<link>https://quantum.siprop.org/ogaki-mini-maker-faire-2020/</link>
+					<comments>https://quantum.siprop.org/ogaki-mini-maker-faire-2020/#respond</comments>
+		
+		<dc:creator><![CDATA[HirotakaNiisato]]></dc:creator>
+		<pubDate>Thu, 10 Dec 2020 12:46:48 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1617</guid>
+
+					<description><![CDATA[<p>大垣 IAMAS で2020/12/05, 06で行われたOgaki Mini Maker Faireに行ってきた。そして2日目の午後に8bitのプレゼンも行ってきました。資料はこちら。 色んな作品が展示してあって、めっ&#8230; <br /> <a class="read-more" href="/ogaki-mini-maker-faire-2020/">もっと読む</a></p>
+<p>The post <a href="/ogaki-mini-maker-faire-2020/" target="_blank">Ogaki Mini Maker Faire 2020</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<p>大垣 <a href="https://www.iamas.ac.jp/" target="_blank" rel="noreferrer noopener">IAMAS</a> で2020/12/05, 06で行われた<a href="https://www.iamas.ac.jp/ommf2020/" target="_blank" rel="noreferrer noopener">Ogaki Mini Maker Faire</a>に行ってきた。そして2日目の午後に8bitのプレゼンも行ってきました。資料はこちら。</p>
+
+
+
+<figure class="wp-block-embed-slideshare wp-block-embed is-type-rich is-provider-slideshare wp-embed-aspect-1-1 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<div class='embed-container'><iframe loading="lazy" title="Principle Representation of The 8 Qubits Quantum Computer by RaspberryPi" src="https://www.slideshare.net/slideshow/embed_code/key/gviPRgRPdey7CD" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/noritsuna/principle-representation-of-the-8-qubits-quantum-computer-by-raspberrypi" title="Principle Representation of The 8 Qubits Quantum Computer by RaspberryPi" target="_blank">Principle Representation of The 8 Qubits Quantum Computer by RaspberryPi</a> </strong> from <strong><a href="https://www.slideshare.net/noritsuna" target="_blank">Industrial Technology Research Institute (ITRI)(工業技術研究院, 工研院)</a></strong> </div></div>
+</div></figure>
+
+
+
+<p>色んな作品が展示してあって、めっちゃ刺激になったっす。</p>
+
+
+
+<figure class="wp-block-image size-large is-resized is-style-default"><img loading="lazy" decoding="async" src="/wp-content/uploads/2020/12/IMG_0409.jpg" alt="" class="wp-image-1637" width="580" height="435"/></figure>
+
+
+
+<figure class="wp-block-gallery columns-3 is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex"><ul class="blocks-gallery-grid"><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0432.jpg" alt="" data-id="1631" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0432.jpg" data-link="https://quantum.siprop.org/img_0432/" class="wp-image-1631"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0428.jpg" alt="" data-id="1630" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0428.jpg" data-link="https://quantum.siprop.org/img_0428/" class="wp-image-1630"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0426.jpg" alt="" data-id="1629" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0426.jpg" data-link="https://quantum.siprop.org/img_0426/" class="wp-image-1629"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0424.jpg" alt="" data-id="1628" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0424.jpg" data-link="https://quantum.siprop.org/img_0424/" class="wp-image-1628"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0421.jpg" alt="" data-id="1627" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0421.jpg" data-link="https://quantum.siprop.org/img_0421/" class="wp-image-1627"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0436.jpg" alt="" data-id="1621" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0436.jpg" data-link="https://quantum.siprop.org/img_0436/" class="wp-image-1621"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0442.jpg" alt="" data-id="1623" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0442.jpg" data-link="https://quantum.siprop.org/img_0442/" class="wp-image-1623"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0439.jpg" alt="" data-id="1622" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0439.jpg" data-link="https://quantum.siprop.org/img_0439/" class="wp-image-1622"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0447.jpg" alt="" data-id="1624" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0447.jpg" data-link="https://quantum.siprop.org/img_0447/" class="wp-image-1624"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0457.jpg" alt="" data-id="1625" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0457.jpg" data-link="https://quantum.siprop.org/img_0457/" class="wp-image-1625"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0414.jpg" alt="" data-id="1620" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0414.jpg" data-link="https://quantum.siprop.org/img_0414/" class="wp-image-1620"/></figure></li><li class="blocks-gallery-item"><figure><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0413.jpg" alt="" data-id="1619" data-full-url="https://quantum.siprop.org/wp-content/uploads/2020/12/IMG_0413.jpg" data-link="https://quantum.siprop.org/img_0413/" class="wp-image-1619"/></figure></li></ul></figure>
+
+
+
+<p>あと、総勢16台+1台(計17台)のRaspberry Piを使っているというのもあって、<a href="https://project.nikkeibp.co.jp/pc/rpic/" target="_blank" rel="noreferrer noopener">みんなのラズパイコンテスト</a>に出してみたら、KSY賞を頂きました。副賞でRPiで使えるカメラを頂きました:) ありがとうございます!!</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/12/IMG_0474.jpg" alt="" class="wp-image-1634"/></figure>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="768" height="1024" src="/wp-content/uploads/2020/12/IMG_0477.jpg" alt="" class="wp-image-1639"/></figure>
+
+
+
+<p>コロナ状況下だけど、引き続き頑張っていきまっす。</p><p>The post <a href="/ogaki-mini-maker-faire-2020/" target="_blank">Ogaki Mini Maker Faire 2020</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/ogaki-mini-maker-faire-2020/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>クラドニ図の作りかた</title>
+		<link>https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/</link>
+					<comments>https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comments</comments>
+		
+		<dc:creator><![CDATA[HirotakaNiisato]]></dc:creator>
+		<pubDate>Thu, 05 Nov 2020 10:16:00 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1443</guid>
+
+					<description><![CDATA[<p>ここで作ったクラドニ図用の作り方を残しておく。 Googleで「クラドニ図 スピーカ」で検索するとちゃんとした市販品から、自作している物まで色々と出てくる。市販品になると3-4万円/個くらいの物があった。さすがにちょっと&#8230; <br /> <a class="read-more" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/">もっと読む</a></p>
+<p>The post <a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/" target="_blank">クラドニ図の作りかた</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<p><a href="/8-bit/">ここで作った</a>クラドニ図用の作り方を残しておく。</p>
+
+
+
+<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<div class='embed-container'><iframe loading="lazy" title="8 bit" width="1920" height="1080" src="https://www.youtube.com/embed/3aaRVPBKYBg?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+</div></figure>
+
+
+
+<p>Googleで「クラドニ図 スピーカ」で検索するとちゃんとした市販品から、自作している物まで色々と出てくる。市販品になると<a href="https://www.arborsci.com/products/mechanical-wave-valuepack">3-4万円/個くらいの物</a>があった。さすがにちょっとお高いので、サクッと簡単に出来る方法は調べたりした。中でも一番簡単に出来るのはこれだと思う。</p>
+
+
+
+<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-4-3 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<div class='embed-container'><iframe loading="lazy" title="Plaque de Chladni et voix" width="1440" height="1080" src="https://www.youtube.com/embed/4cQ_HtcJECs?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+</div></figure>
+
+
+
+<p>適当なプラケースとかの上に粒子(砂・塩・砂糖)を撒いて、声を出すだけ。これだけで紋様が浮かび上がる。<br><br>ちなみに、600年前の教会の壁からも同じような図が出てきている <a href="https://www.mentalfloss.com/article/16273/600-year-old-music-found-encoded-chapel-walls">600-Year-Old Music Found Encoded in Chapel Walls</a> 。この時代はまだ共振によって不思議な紋様が出てくるとは分かっていないと思うけど、経験的に賛美歌や教会から奏でられる音色から出てくる紋様を記録していたというのも想像に難くない。<br>また最近でもクラドニ図を使った研究も結構あったりで、自分的に面白いと思ったのがnatureからのこちら <a href="https://www.nature.com/articles/ncomms12764">Controlling the motion of multiple objects on a Chladni plate</a> 。といった感じでクラドニ図を使った物は古くから現在まで沢山ある。<br>以下では、自分の作った方法を載せておく。</p>
+
+
+
+<h4 class="wp-block-heading">■ 完成形</h4>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3903.jpg" alt="" class="wp-image-1457"/></figure>
+
+
+
+<p></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4608.jpg" alt="" class="wp-image-1458"/></figure>
+
+
+
+<p>鉄板については四角形・円形どちらでも大丈夫。好きな形を選べばよい。自分は直径180mmの円形、180x180mm 正方形・0.5mmの鉄板を利用している。</p>
+
+
+
+<h4 class="wp-block-heading">■ 部材</h4>
+
+
+
+<p>・10cm フルレンジスピーカ x 1<br>・3Dモデル : <a href="/wp-content/uploads/2020/10/3dmodel.zip">ここからダウンロード</a>  base.stl, top.stl, cone.stl の３種類<br>・八幡長ネジ 150mm M5 x 4<br>・M5 80mm なべ小ネジ x 1<br>・M5 ナット・ワッシャ x 24<br>・エーモン平型端子スピーカー用 S・Mセット x 1<br>・鉄板（中心にM5用の穴） x 1<br>・白砂（ダイソーとかに売っている）</p>
+
+
+
+<h4 class="wp-block-heading">■ 作り方</h4>
+
+
+
+<p>まずは３Dプリンタでbase.stl、top.stl、cone.stl を出力する。3Dモデルをダウンロードして展開すると、それぞれ&#8230;<br><br>base.stl : 土台（下の円形のもの）<br>top.stl : 支持（上の円形のもの）<br>cone.stl : スピーカと鉄板の支持<br><br>という役割がある。シンプルな形状でFusion360でサクッと作っている。スピーカのサイズに合わせてSTLを修正して使ってもOKっすね。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3746.jpg" alt="" class="wp-image-1490"/></figure>
+
+
+
+<p>次にスピーカを加工する。スピーカのセンターキャップ部分を残してカッターでコーンを切り取る。やってみれば分かるけど、結構綺麗にコーンは除去できる。<br>そしてセンターキャップに出力した3Dモデル cone.stl を&#8221;M5 80mm なべ小ネジ&#8221;を通してから接着剤で完全に固定する。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4185.jpg" alt="" class="wp-image-1495"/></figure>
+
+
+
+<p>あとはとても簡単。base.stl で出力した土台に&#8221;八幡長ネジ 150mm M5&#8243;を通して支持（ top.stl ）にM5ナット＆ワッシャーで固定してガワが完成する。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4245.jpg" alt="" class="wp-image-1500"/></figure>
+
+
+
+<p>最後に支柱付きのスピーカーをさっき通した&#8221;八幡長ネジ 150mm M5&#8243;にM5ナット・ワッシャーで固定すれば完成になる。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4247.jpg" alt="" class="wp-image-1524"/></figure>
+
+
+
+<p>スピーカーには&#8221;エーモン平型端子スピーカー用&#8221;のS/M端子をカシメて接合して完成になる。端子を音源につなげるとボイスコイルが動いて音として支軸を通して伝わっていくという流れになる。</p>
+
+
+
+<p>鉄板をセンターキャップからの支柱につなげて、砂を落として音出しすると図が出てくる。<br>ここで、鉄板が水平にならないと、砂が一方向に落ちていってしまう。対策として、スピーカ部は&#8221;八幡長ネジ 150mm M5&#8243;x4本で支えているから、水平になるようにネジを調整すればわりと簡単に水平を取れるようになっている。なので、設置したところが水平でなくても、ある程度の誤差は吸収できるような構造にしている。</p>
+
+
+
+<h4 class="wp-block-heading">■ 鉄板</h4>
+
+
+
+<p>自分は鉄板を使ったけど、スピーカ部が出来れば鉄板以外の物でも接合できる。なぜ鉄板を使ったか？というと、出来るだけ音の振動を伝えやすい素材を使った方が良いだろう(<a href="https://www.valtech.to/photo/36112/music.htm">参考</a>)ということからだった。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3771.jpg" alt="" class="wp-image-1516"/></figure>
+
+
+
+<p>一応、色々な厚さ・サイズ・素材で切り出してテストを行って、180x180mmが扱いやすいということに落ち着いた。鉄板は簡易な入手性も考えて、東急ハンズで0.5mm鉄板を入手・カットして使っている。</p>
+
+
+
+<h4 class="wp-block-heading">■ スピーカー</h4>
+
+
+
+<p>スピーカーは全てハードオフ・ヤフオクで入手したジャンク・スピーカを利用している。スピーカ1個で新品 2000円〜くらいするスペックの物が欲しかったのもあるけど、量を揃えるとなるとコストに直結する。10個作ろうとすると予備も合わせて2〜3万円はかかってしまう。<br>そこで、動作未確認のジャンク・スピーカをゲットして利用することにした。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3656.jpg" alt="" class="wp-image-1521"/></figure>
+
+
+
+<p>価格帯は1円〜500円程度(もちろんスピーカなので2台で)。コンポと一緒に付いてくるスピーカがほとんどで、本体のアンプが壊れてスピーカだけ出ているケースが多かった。だから何気にスピーカ自体はそのまま使える。24本ほどジャンク・スピーカを入手したけど、鳴らないものは一つもなかった。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4189.jpg" alt="" class="wp-image-1520"/></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4195.jpg" alt="" class="wp-image-1523"/></figure>
+
+
+
+<p>スピーカ本体からバラすのは再利用として環境に優しい。ただ、エンクロージャー(木材)が大量に積まれていくことになった。</p>
+
+
+
+<p>スピーカ自体は何を使っても良いけど、コーンに電極が接合されている物は避けることにした。コーンが付いていると音が凄く鳴るので、クラドニ図をだけを出す場合にはマッチしない。そこでコーンを切り取るわけだけど、そのときコーンに電極が付いているとボイスコイルまで電極を辿ることなる。とても切れやすい銅線をうまく引き剥がすのは（何個かスピーカを犠牲にしてやってみたものの）うまく出来なかった。そこでコーンに電極がないスピーカのみを使うことにした。というのもあって、大量の不採用スピーカも出てくることになった。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3605.jpg" alt="" class="wp-image-1557"/></figure>
+
+
+
+<h4 class="wp-block-heading">■その他</h4>
+
+
+
+<p>出来た物をそのままPCとかのジャックからの出力を使ってもパワーが足りなくて図が出てこないはず。そこでパワーアンプの出番になる。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4562.jpg" alt="" class="wp-image-1569"/></figure>
+
+
+
+<p>ここではRPi4x16台を使った電波送受信からダウンコンバートして、アンプ経由で図を出している。ここで使っている<a href="https://www.amazon.co.jp/dp/B07D4HSXCG/">アンプはこちら</a>。価格もお手頃で出力もあって良い感じ。</p>
+
+
+
+<p></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_20200905_165718.jpg" alt="" class="wp-image-1587"/></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4602.jpg" alt="" class="wp-image-1585"/></figure>
+
+
+
+<p>これだけの量を電波側の周波数を変えながらテストしていくとなると1-2時間はかかってしまう。鉄板の気温変化による伸縮が効いて、環境変化に合わせて再調整を行うのが、台数も多くて大変な作業の一つにもなった。<br></p>
+
+
+
+<p>最後に&#8230;</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/11/IMG_4899.jpg" alt="" class="wp-image-1609"/></figure>
+
+
+
+<p>予備部材も使って全部で12個作ってタワーみたいに並べてみた。</p><p>The post <a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/" target="_blank">クラドニ図の作りかた</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/feed/</wfw:commentRss>
+			<slash:comments>12</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>qutipの環境(jupyter lab/vscode)</title>
+		<link>https://quantum.siprop.org/qutip_jupyter_lab_vscode/</link>
+					<comments>https://quantum.siprop.org/qutip_jupyter_lab_vscode/#respond</comments>
+		
+		<dc:creator><![CDATA[HirotakaNiisato]]></dc:creator>
+		<pubDate>Mon, 29 Jun 2020 08:00:59 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1369</guid>
+
+					<description><![CDATA[<p>qubitの時間発展をデータとして使うため、qutipを使うことに。インストールはanacondaを使って行う。自分もよくanacondaを使うから、そのまま今の環境を利用できる。インストール手順に従って&#8230; &#8230; <br /> <a class="read-more" href="/qutip_jupyter_lab_vscode/">もっと読む</a></p>
+<p>The post <a href="/qutip_jupyter_lab_vscode/" target="_blank">qutipの環境(jupyter lab/vscode)</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<p>qubitの時間発展をデータとして使うため、qutipを使うことに。インストールはanacondaを使って行う。自分もよくanacondaを使うから、そのまま今の環境を利用できる。<a href="http://qutip.org/docs/4.1/installation.html" target="_blank" rel="noreferrer noopener">インストール手順</a>に従って&#8230;<br><br><code>conda create -n qutip-env python=3<br>conda activate qutip-env<br>conda install numpy scipy cython matplotlib nose jupyter notebook spyder<br>conda install qutip<br>conda install jupyterlab&nbsp;</code></p>
+
+
+
+<p>jupyter-labでコマンドから起動すればすぐ使える。</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="1203" height="835" src="/wp-content/uploads/2020/06/screenshot-1.jpg" alt="" class="wp-image-1367"/></figure>
+
+
+
+<p>んで、このままブラウザで書いていっても良いのだけど、ここはやっぱりVScodeから使いたいということで。jupyter-labのコマンドプロンプトはそのままにしておいて、VScodeにJupyterのExtensionを入れて、右上にあるanacondaのカーネル(ここではqutip-env)を指定してあげると&#8230;</p>
+
+
+
+<figure class="wp-block-image size-large is-style-default"><img loading="lazy" decoding="async" width="1273" height="865" src="/wp-content/uploads/2020/06/sp1.png" alt="" class="wp-image-1405"/></figure>
+
+
+
+<p>ってな感じでVScode上で使えるように。使い勝手はJupyterLabと一緒な感じでエディタとしてVScodeが使えるのは便利だと思われ。<br>ここから量子の時間発展の座標をOSCで飛ばしてSyphon(TouchDesigner, Processing, oF, Unityとか何でも)に処理してしまえば、表示はどこでもOKといった感じになる。</p>
+
+
+
+<p>ちなみに、Google Colabでもサクサク動いた。最初に<br><code>!pip install qutip</code><br>と実行すればOK。以前、頑張って動かそうとしてダメダメで挫折したんだけど、何か環境でも変わったんだろうか&#8230;外部と通信しないでどこでも使ってみるなら、Google Colabの方が良い気がする。いちいちPython環境を作り込みしなくてもOKだからね。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1079" height="884" src="/wp-content/uploads/2020/06/sp3.png" alt="" class="wp-image-1419"/></figure><p>The post <a href="/qutip_jupyter_lab_vscode/" target="_blank">qutipの環境(jupyter lab/vscode)</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/qutip_jupyter_lab_vscode/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>有用な量子命令セットを探索する</title>
+		<link>https://quantum.siprop.org/%e6%9c%89%e7%94%a8%e3%81%aa%e9%87%8f%e5%ad%90%e5%91%bd%e4%bb%a4%e3%82%bb%e3%83%83%e3%83%88%e3%82%92%e6%8e%a2%e7%b4%a2%e3%81%99%e3%82%8b/</link>
+					<comments>https://quantum.siprop.org/%e6%9c%89%e7%94%a8%e3%81%aa%e9%87%8f%e5%ad%90%e5%91%bd%e4%bb%a4%e3%82%bb%e3%83%83%e3%83%88%e3%82%92%e6%8e%a2%e7%b4%a2%e3%81%99%e3%82%8b/#respond</comments>
+		
+		<dc:creator><![CDATA[k_yamaz]]></dc:creator>
+		<pubDate>Tue, 02 Jun 2020 14:20:57 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1344</guid>
+
+					<description><![CDATA[<p>2020年の未踏ターゲット事業にご採択頂きまして「量子コンパイル基盤の最適化処理・分岐並列制御の開発と量子計算を体感するプレゼンテーション」というテーマで来年２月まで取り組ませて頂きます。 わたし（k_yamaz）はプロ&#8230; <br /> <a class="read-more" href="/%e6%9c%89%e7%94%a8%e3%81%aa%e9%87%8f%e5%ad%90%e5%91%bd%e4%bb%a4%e3%82%bb%e3%83%83%e3%83%88%e3%82%92%e6%8e%a2%e7%b4%a2%e3%81%99%e3%82%8b/">もっと読む</a></p>
+<p>The post <a href="/%e6%9c%89%e7%94%a8%e3%81%aa%e9%87%8f%e5%ad%90%e5%91%bd%e4%bb%a4%e3%82%bb%e3%83%83%e3%83%88%e3%82%92%e6%8e%a2%e7%b4%a2%e3%81%99%e3%82%8b/" target="_blank">有用な量子命令セットを探索する</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<div>
+<div>2020年の未踏ターゲット事業にご採択頂きまして「量子コンパイル基盤の最適化処理・分岐並列制御の開発と量子計算を体感するプレゼンテーション」というテーマで来年２月まで取り組ませて頂きます。</div>
+<p></p>
+<div>わたし（k_yamaz）はプロジェクトの取りまとめ役なのですが、４名のメンバーが明確な課題をもってそれぞれ取り組んでいこうとしています。もちろん全体感としては、昨年開発したフレームワークの上に成り立っていますので、基本的には全てが絡んでいて、連携しています。応用面や教育面からのアプローチで新しい機能を拡張したり、昨年はリファレンス実装という名目で見切りで仕様を策定した箇所を再検討したりするのが今年のタスクになります。今年は「応用・実用化枠」で採択されたこともあり、私たちが開発しているフレームワークがどのような方々に利用して頂きたいかという利用シーンも想定しながら、タスクを考えました。</div>
+<p></p>
+<div>それぞれのメインで担当するところをお伝えするエントリーを投稿させて頂いておりますが、本エントリーでは、わたし（k_yamaz）のテーマをご紹介します。</div>
+<p></p>
+<div>わたしは「課題1）量子コンパイラの最適化処理」に対して取り組みます。</div>
+<p></p>
+<div>ゲート型の量子コンピュータで任意の量子計算を実行しようとすると、それは数少ない量子命令セット（＝量子誤り訂正が可能なユニバーサルな命令セット）に分解されなければなりません。例えば、私たちが昨年定義した RISC-V の K-Extension では、アダマール（H）や非クリフォードな π／８（T）ゲートはありますが、任意回転角の回転ゲートのような量子命令セットは準備していません。なぜなら、量子誤り訂正を意識しているからなのですが、この限られた量子命令セットしかないということがポイントです。任意の量子計算（任意のユニタリ演算）を実施したい場合は、それをこの定義された量子命令セットの列に変換する必要があります。これは、教科書にもよく登場する &#8220;Solovay-Kitaev の定理&#8221; を使えばよいので、それほど新しいことではありません。ただし、この処理で長くなった量子ゲートの操作列は、愚直に実行しても量子計計算はできますが、効率的かというとそれは自明ではありません。</div>
+<p></p>
+<div>ここに量子コンパイラが関わるべき「量子最適化処理」という処理の必要性があります。このように、量子コンパイラの量子最適化という視点で量子計算をみると、課題もたくさんあって、色々な角度から研究されており、様々な提案もされています。</div>
+<p></p>
+<div>私たちは、幸いにも LLVM をもとにした量子最適化のための Pass機構の枠組みを開発しました。その機能を実践的に活用しようというのが、今年の活動のベースにあるテーマです。</div>
+<div>では、具体的に何をするかということですが、上で取り上げましたように、ある量子計算は、その下層で限定的に定義された量子命令セットと密接に関連していて、QPUで実行される前に（量子コンパイラにより）分解され・最適化されます。つまり、どのような量子命令セットを定義しておくかということは、量子最適化処理を行うには、検討されるべき重要なファクターです。そこで今年は、Pass機構とバックエンド（gccの量子対応の改造版）を使って、昨年定義した量子命令セット以外に、有用な量子命令セットがないかを探索します。</div>
+<p></p>
+<div>そして、この検証を進めるために、&#8221;Solovay-Kitaev の定理&#8221; を実装したりしたサンプルを開発して、検証していきます。</div>
+<div>この活動を通じて、量子誤り訂正後の量子回路の最適化を考えたり、量子命令セットのアーキテクチャを検討する方々にとって、役立つフレームワークと利用例を提示することが、最終的な目標です。</div>
+</div><p>The post <a href="/%e6%9c%89%e7%94%a8%e3%81%aa%e9%87%8f%e5%ad%90%e5%91%bd%e4%bb%a4%e3%82%bb%e3%83%83%e3%83%88%e3%82%92%e6%8e%a2%e7%b4%a2%e3%81%99%e3%82%8b/" target="_blank">有用な量子命令セットを探索する</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/%e6%9c%89%e7%94%a8%e3%81%aa%e9%87%8f%e5%ad%90%e5%91%bd%e4%bb%a4%e3%82%bb%e3%83%83%e3%83%88%e3%82%92%e6%8e%a2%e7%b4%a2%e3%81%99%e3%82%8b/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>量子コンピュータを使ったモノ</title>
+		<link>https://quantum.siprop.org/%e9%87%8f%e5%ad%90%e3%82%b3%e3%83%b3%e3%83%94%e3%83%a5%e3%83%bc%e3%82%bf%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%a2%e3%83%8e/</link>
+					<comments>https://quantum.siprop.org/%e9%87%8f%e5%ad%90%e3%82%b3%e3%83%b3%e3%83%94%e3%83%a5%e3%83%bc%e3%82%bf%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%a2%e3%83%8e/#respond</comments>
+		
+		<dc:creator><![CDATA[HirotakaNiisato]]></dc:creator>
+		<pubDate>Tue, 02 Jun 2020 01:39:33 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1332</guid>
+
+					<description><![CDATA[<p>今年の自分のテーマは&#8230; ・課題4）教育的視点での課題 量子計算を教育にも利用できるインタラクティブ(体感・体験できる)プレゼンテーションが必要 ﻿ いまの所、量子コンピュータを使ったアプリケーションは少ない。&#8230; <br /> <a class="read-more" href="/%e9%87%8f%e5%ad%90%e3%82%b3%e3%83%b3%e3%83%94%e3%83%a5%e3%83%bc%e3%82%bf%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%a2%e3%83%8e/">もっと読む</a></p>
+<p>The post <a href="/%e9%87%8f%e5%ad%90%e3%82%b3%e3%83%b3%e3%83%94%e3%83%a5%e3%83%bc%e3%82%bf%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%a2%e3%83%8e/" target="_blank">量子コンピュータを使ったモノ</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<p>今年の自分のテーマは&#8230;</p>
+<p>・課題4）教育的視点での課題<br />
+量子計算を教育にも利用できるインタラクティブ(体感・体験できる)プレゼンテーションが必要<br />
+﻿<br />
+いまの所、量子コンピュータを使ったアプリケーションは少ない。そして、量子コンピュータというと、現時点で使われているPCを超えるスゴイ物という認識くらいな感じではあると感じている。まだ黎明期というのもあるものの、特に前者については「量子コンピュータを使うと結局なにが面白いの？」というのを、研究者だけではなく広く量子コンピュータを知らない人にも感じてもらえるような物を通じて、「何か面白い」と感じてもらう事の必要になってくる。</p>
+<p>コンピュータを使ったインタラクション(HCI：Human-Computer Interaction)の歴史は古くからあって、センサーなどを使って人のデータをデジタル・メタ化して、コンピュータの演算によって人にフィードバックするような物が多い(<a href="http://www.mathcs.emory.edu/~valerie/courses/spr11/485/resources/HCI-history.pdf" rel="noopener noreferrer" target="_blank">この辺の資料</a>とか、面白いと思う)。<br />
+例えば、目の前にあるPCそのものでもあったりする。ただ、数十年後・数百年後のPCの形は、今のようなキーボード&#038;モニターのようなモノではなく、全く変わった別のモノになっているかもしれないし、今のようなモノであるかもしれない。どのような形になるにしても、コンピュータと人との関わり方を見せるようなモノによって、進化していくことになる。<br />
+個人的には、コンピュータを意識しなくても人が使って面白い・楽しいと思うコトやモノが最初にあって、それが裏に潜んでいる深淵やより深い事について知る大きな契機になってくると考えていたりもする。</p>
+<p>そこで、古典コンピュータを使った事と同様のことが、量子コンピュータを使っても起きてくるに違いない。すでに量子コンピュータをターゲットにした物を作っている人もいる。</p>
+<p><a href="https://www.youtube.com/watch?v=0fPEvHXIxQk" rel="noopener noreferrer" target="_blank">Quantum Garden: An interactive quantum computing installation</a><br />
+<a href="http://systems.rca.ac.uk/entangled-quantum-computer-art-exhibition-at-white-city-place/" rel="noopener noreferrer" target="_blank">Quantum Computer Art exhibition at White City</a></p>
+<p>このようなモノのように、量子コンピュータをターゲットにしたモノを今年は時間をかけて作っていこうと。自分の場合は、「触れる・光る・音がなる」のセットはMUSTとして考えていて、この辺をうまく取り込めたらなーと。</p><p>The post <a href="/%e9%87%8f%e5%ad%90%e3%82%b3%e3%83%b3%e3%83%94%e3%83%a5%e3%83%bc%e3%82%bf%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%a2%e3%83%8e/" target="_blank">量子コンピュータを使ったモノ</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/%e9%87%8f%e5%ad%90%e3%82%b3%e3%83%b3%e3%83%94%e3%83%a5%e3%83%bc%e3%82%bf%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%a2%e3%83%8e/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>マイクロ波制御処理の実用化に向けて</title>
+		<link>https://quantum.siprop.org/next_design_for_microwave_quantum_firmware/</link>
+					<comments>https://quantum.siprop.org/next_design_for_microwave_quantum_firmware/#respond</comments>
+		
+		<dc:creator><![CDATA[ImamuraNoritsuna]]></dc:creator>
+		<pubDate>Mon, 01 Jun 2020 22:31:26 +0000</pubDate>
+				<category><![CDATA[未分類]]></category>
+		<category><![CDATA[firmware]]></category>
+		<category><![CDATA[gnuradio]]></category>
+		<category><![CDATA[microwave]]></category>
+		<category><![CDATA[quantum]]></category>
+		<category><![CDATA[quantum firmware]]></category>
+		<guid isPermaLink="false">https://quantum.siprop.org/?p=1321</guid>
+
+					<description><![CDATA[<p>2020年度の未踏ターゲット事業に採択されましたので、わたし（今村謙之 いまむらのりつな）の担当部である 課題2）マイクロ波制御処理の実用化に向けての課題 任意パルス波形生成におけるパラメータチューニングのテンプレート化&#8230; <br /> <a class="read-more" href="/next_design_for_microwave_quantum_firmware/">もっと読む</a></p>
+<p>The post <a href="/next_design_for_microwave_quantum_firmware/" target="_blank">マイクロ波制御処理の実用化に向けて</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></description>
+										<content:encoded><![CDATA[<p><a href="/adoption_mito_target_2020/">2020年度の未踏ターゲット事業に採択されました</a>ので、わたし（今村謙之 いまむらのりつな）の担当部である</p>
+<ul>
+<li>課題2）マイクロ波制御処理の実用化に向けての課題<br />
+任意パルス波形生成におけるパラメータチューニングのテンプレート化と高負荷処理への対応</li>
+</ul>
+<p>について、詳細を説明したいと思います。</p>
+<p>まず、開発内容ですが、こちらの概要は採択内容のほうに書かれております。ただし、去年からの続きでありますので、去年の成果であるGNURadio向け量子ファームウェアの「<a href="https://github.com/noritsuna/gr-quantum/">GR-Quantum</a>」をベースにどのような追加開発を行うか？ということになります。</p>
+<ul>
+<li>開発2）パルス波発生処理の追加実装<br />
+・ターゲット利用者：無線家でマイクロ波を制御できる人で、量子の実機への応用を模索している人<br />
+・実現する機能：<br />
+2量子ビットの内部シミュレータ<br />
+<a href="https://arxiv.org/abs/1809.03452">OpenPulse</a>からのパルス波パラメータの設定ツール<br />
+外部連携用パルス波データの出力</li>
+</ul>
+<p>大きく分けて「3つ」あります。</p>
+<ol>
+<li>2量子ビットの内部シミュレータ
+<ol>
+<li>こちらは、本来なら1年目にあるべき機能でしたが、そもそものボリュームが膨大だったため、1年目の開発ではやらずに、今年に回したものとなります。そのため、1年目の続きとなります。（実際には、1年目にそれなりに実装はしてあり、もう少し作りこまないといけない部分があるという状態です。）</li>
+</ol>
+</li>
+<li><a href="https://arxiv.org/abs/1809.03452">OpenPulse</a>からのパルス波パラメータの設定ツール
+<ol>
+<li>こちらは、新規開発の機能となります。</li>
+<li>現在は、XゲートやYゲートなどのパルス波のパラメータ（電波の形状）は、ユーザーが自分で定義する前提となっています。しかし、実際に使う実機で使うパルス波のパラメータは決まっています。そこで、本機能で、定義済みのパルス波のパラメータを読みだして、自動で設定するようなツールを作ることを想定しています。</li>
+<li>そして、その最初のターゲットとして、パルス波のパラメータが<a href="https://arxiv.org/abs/1809.03452">OpenPulse</a>として公開されている「<a href="https://www.ibm.com/quantum-computing/">IBM Q</a>」とする予定です。</li>
+</ol>
+</li>
+<li>外部連携用パルス波データの出力
+<ol>
+<li>こちらは、新規開発の機能となります。</li>
+<li>こちらは何のことか非常にわかりにくいのですが、「任意時間のQPUの状態を連続的に出力する機能」となります。そのため、QPUを完全にシミュレーションする必要があり、そのための機能を実装することになります。
+<ol>
+<li>このあたりは、量子情報工学的には全く扱うことがないところのため、ほとんど参考文献がないところであり、この部分と量子情報工学を結び付けるというテーマは、非常にチャレンジングなテーマとなっております（古典コンピュータで言えば、CPUの中のトランジスタの動作の物理現象をシミュレーションするような機能となる。）</li>
+</ol>
+</li>
+<li>ちなみに、「課題4）教育的視点での課題」により、利用されることになります。</li>
+</ol>
+</li>
+</ol>
+<p>そして、さすがに間に合わない可能性が高そうだったため、書かれてはいないのですが、本来は「FPGAによるパルス生成用のSDRボード」の開発も考えております。チップ類の選定は済んでおり、あとはPCB-CADで設計して、試作まで行ければと考えております。</p>
+<p>というところで、みなさま、今年もよろしくお願いします。</p><p>The post <a href="/next_design_for_microwave_quantum_firmware/" target="_blank">マイクロ波制御処理の実用化に向けて</a> first appeared on <a href="/" target="_blank">SIProp量子化計画</a>.</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://quantum.siprop.org/next_design_for_microwave_quantum_firmware/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

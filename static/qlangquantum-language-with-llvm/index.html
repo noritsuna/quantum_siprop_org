@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Mon, 20 Apr 2026 21:18:04 GMT">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+	    <script>
+        (function (exports, d) {
+            var _isReady = false,
+                _event,
+                _fns = [];
+
+            function onReady(event) {
+                d.removeEventListener("DOMContentLoaded", onReady);
+                _isReady = true;
+                _event = event;
+                _fns.forEach(function (_fn) {
+                    var fn = _fn[0],
+                        context = _fn[1];
+                    fn.call(context || exports, window.jQuery);
+                });
+            }
+
+            function onReadyIe(event) {
+                if (d.readyState === "complete") {
+                    d.detachEvent("onreadystatechange", onReadyIe);
+                    _isReady = true;
+                    _event = event;
+                    _fns.forEach(function (_fn) {
+                        var fn = _fn[0],
+                            context = _fn[1];
+                        fn.call(context || exports, event);
+                    });
+                }
+            }
+
+            d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+            d.attachEvent && d.attachEvent("onreadystatechange", onReadyIe);
+
+            function domReady(fn, context) {
+                if (_isReady) {
+                    fn.call(context, _event);
+                }
+
+                _fns.push([fn, context]);
+            }
+
+            exports.mesmerizeDomReady = domReady;
+        })(window, document);
+    </script>
+    <title>qlang(quantum language) with LLVM | SIProp量子化計画</title>
+<meta name='robots' content='max-image-preview:large' />
+
+<!-- All In One SEO Pack 3.7.1ob_start_detected [-1,-1] -->
+<meta name="description"  content="qlangというRISC-V 量子向けの独自のプログラミング言語をLLVM基盤上で開発していく。" />
+
+<script type="application/ld+json" class="aioseop-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://quantum.siprop.org/#organization","url":"https://quantum.siprop.org/","name":"SIProp量子化計画","sameAs":[]},{"@type":"WebSite","@id":"https://quantum.siprop.org/#website","url":"https://quantum.siprop.org/","name":"SIProp量子化計画","publisher":{"@id":"https://quantum.siprop.org/#organization"}},{"@type":"WebPage","@id":"https://quantum.siprop.org/qlangquantum-language-with-llvm/#webpage","url":"https://quantum.siprop.org/qlangquantum-language-with-llvm/","inLanguage":"ja","name":"qlang(quantum language) with LLVM","isPartOf":{"@id":"https://quantum.siprop.org/#website"},"breadcrumb":{"@id":"https://quantum.siprop.org/qlangquantum-language-with-llvm/#breadcrumblist"},"description":"qlangというRISC-V 量子向けの独自のプログラミング言語をLLVM基盤上で開発していく。","datePublished":"2019-11-18T09:35:59+09:00","dateModified":"2019-12-02T07:55:51+09:00"},{"@type":"Article","@id":"https://quantum.siprop.org/qlangquantum-language-with-llvm/#article","isPartOf":{"@id":"https://quantum.siprop.org/qlangquantum-language-with-llvm/#webpage"},"author":{"@id":"https://quantum.siprop.org/author/niisato/#author"},"headline":"qlang(quantum language) with LLVM","datePublished":"2019-11-18T09:35:59+09:00","dateModified":"2019-12-02T07:55:51+09:00","commentCount":0,"mainEntityOfPage":{"@id":"https://quantum.siprop.org/qlangquantum-language-with-llvm/#webpage"},"publisher":{"@id":"https://quantum.siprop.org/#organization"},"articleSection":"未分類"},{"@type":"Person","@id":"https://quantum.siprop.org/author/niisato/#author","name":"HirotakaNiisato","sameAs":[],"image":{"@type":"ImageObject","@id":"https://quantum.siprop.org/#personlogo","url":"https://secure.gravatar.com/avatar/2b5721bee955f54261390d01588d5a533bad37d7a7dfd39b957f0f235d5110d6?s=96&d=mm&r=g","width":96,"height":96,"caption":"HirotakaNiisato"}},{"@type":"BreadcrumbList","@id":"https://quantum.siprop.org/qlangquantum-language-with-llvm/#breadcrumblist","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://quantum.siprop.org/","url":"https://quantum.siprop.org/","name":"SIProp量子化計画"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://quantum.siprop.org/qlangquantum-language-with-llvm/","url":"https://quantum.siprop.org/qlangquantum-language-with-llvm/","name":"qlang(quantum language) with LLVM"}}]}]}</script>
+<link rel="canonical" href="https://quantum.siprop.org/qlangquantum-language-with-llvm/" />
+<!-- All In One SEO Pack -->
+<link rel='dns-prefetch' href="//fonts.googleapis.com" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fquantum.siprop.org%2Fqlangquantum-language-with-llvm%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fquantum.siprop.org%2Fqlangquantum-language-with-llvm%2F&#038;format=xml" />
+<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id='wp-block-library-inline-css' type='text/css'>
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}.has-text-align-center{text-align:center}.has-text-align-left{text-align:left}.has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=wp-block-library-inline-css */
+</style>
+<style id='wp-block-heading-inline-css' type='text/css'>
+h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:1.25em 2.375em}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/heading/style.min.css */
+</style>
+<style id='wp-block-list-inline-css' type='text/css'>
+ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:1.25em 2.375em}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/list/style.min.css */
+</style>
+<style id='wp-block-paragraph-inline-css' type='text/css'>
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/paragraph/style.min.css */
+</style>
+
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='mesmerize-parent-css' href="/wp-content/themes/mesmerize/style.min.css?ver=6.9.4" type='text/css' media='all' />
+<link rel='stylesheet' id='mesmerize-style-css' href="/wp-content/themes/highlight/style.min.css?ver=1.0.13" type='text/css' media='all' />
+<style id='mesmerize-style-inline-css' type='text/css'>
+img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
+/** cached kirki style */@media screen and (min-width: 768px){.header{background-position:center center;}}.header-homepage:not(.header-slide).color-overlay:before{background:#000000;}.header-homepage:not(.header-slide) .background-overlay,.header-homepage:not(.header-slide).color-overlay::before{opacity:0.7;}.header-homepage-arrow{font-size:calc( 50px * 0.84 );bottom:20px;background:rgba(255,255,255,0);}.header-homepage-arrow > i.fa{width:50px;height:50px;}.header-homepage-arrow > i{color:#ffffff;}.header-homepage .header-description-row{padding-top:30%;padding-bottom:0%;}.inner-header-description{padding-top:8%;padding-bottom:8%;}@media screen and (max-width:767px){.header-homepage .header-description-row{padding-top:15%;padding-bottom:15%;}}@media only screen and (min-width: 768px){.header-content .align-holder{width:80%!important;}.inner-header-description{text-align:center!important;}}
+/*# sourceURL=mesmerize-style-inline-css */
+</style>
+<link rel='stylesheet' id='mesmerize-style-bundle-css' href="/wp-content/themes/mesmerize/assets/css/theme.bundle.min.css?ver=1.0.13" type='text/css' media='all' />
+<link rel='stylesheet' id='mesmerize-fonts-css'  data-href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" id="jquery-core-js-after">
+/* <![CDATA[ */
+    
+        (function () {
+            function setHeaderTopSpacing() {
+
+                setTimeout(function() {
+                  var headerTop = document.querySelector('.header-top');
+                  var headers = document.querySelectorAll('.header-wrapper .header,.header-wrapper .header-homepage');
+
+                  for (var i = 0; i < headers.length; i++) {
+                      var item = headers[i];
+                      item.style.paddingTop = headerTop.getBoundingClientRect().height + "px";
+                  }
+
+                    var languageSwitcher = document.querySelector('.mesmerize-language-switcher');
+
+                    if(languageSwitcher){
+                        languageSwitcher.style.top = "calc( " +  headerTop.getBoundingClientRect().height + "px + 1rem)" ;
+                    }
+                    
+                }, 100);
+
+             
+            }
+
+            window.addEventListener('resize', setHeaderTopSpacing);
+            window.mesmerizeSetHeaderTopSpacing = setHeaderTopSpacing
+            mesmerizeDomReady(setHeaderTopSpacing);
+        })();
+    
+    
+//# sourceURL=jquery-core-js-after
+/* ]]> */
+</script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/posts/367" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.9.4 with StaticPress ver.0.4.5" />
+        <style data-name="header-gradient-overlay">
+            .header .background-overlay {
+                background: linear-gradient(135deg , rgba(102,126,234, 0.8) 0%, rgba(118,75,162,0.8) 100%);
+            }
+        </style>
+        <script type="text/javascript" data-name="async-styles">
+        (function () {
+            var links = document.querySelectorAll('link[data-href]');
+            for (var i = 0; i < links.length; i++) {
+                var item = links[i];
+                item.href = item.getAttribute('data-href')
+            }
+        })();
+    </script>
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>    <style id="page-content-custom-styles">
+            </style>
+        <style data-name="background-content-colors">
+        .mesmerize-inner-page .page-content,
+        .mesmerize-inner-page .content,
+        .mesmerize-front-page.mesmerize-content-padding .page-content {
+            background-color: #ffffff;
+        }
+    </style>
+    </head>
+
+<body class="wp-singular post-template-default single single-post postid-367 single-format-standard wp-theme-mesmerize wp-child-theme-highlight mesmerize-inner-page">
+
+<div  id="page-top" class="header-top">
+		<div class="navigation-bar logo-above-menu "  data-sticky='0'  data-sticky-mobile='1'  data-sticky-to='top' >
+    <div class="navigation-wrapper ">
+        <div class="row basis-auto between-xs">
+	        <div class="logo_col col-xs col-sm-12 center-sm">
+	            <a class="text-logo" data-type="group"  data-dynamic-mod="true" href="/">SIProp量子化計画</a>	        </div>
+	        <div class="main_menu_col col-xs-fit col-sm">
+	            <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-21"><a href="/blog/">Blog</a></li>
+</ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false">
+        <div class="bubble"></div>
+        <i class="fa fa-bars"></i>
+    </a>
+    <div id="offcanvas-wrapper" class="hide force-hide  offcanvas-right">
+        <div class="offcanvas-top">
+            <div class="logo-holder">
+                <a class="text-logo" data-type="group"  data-dynamic-mod="true" href="/">SIProp量子化計画</a>            </div>
+        </div>
+        <div id="offcanvas-menu" class="menu-menu-1-container"><ul id="offcanvas_menu" class="offcanvas_menu"><li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-21"><a href="/blog/">Blog</a></li>
+</ul></div>
+            </div>
+    	        </div>
+	    </div>
+    </div>
+</div>
+</div>
+
+<div id="page" class="site">
+    <div class="header-wrapper">
+        <div  class='header  color-overlay  custom-mobile-image' style='; background-image:url(&quot;https://quantum.siprop.org/wp-content/themes/highlight/assets/images/hero-inner.jpg&quot;); background-color:#6a73da' data-parallax-depth='20'>
+            <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
+        <div class="row header-description-row">
+    <div class="col-xs col-xs-12">
+        <h1 class="hero-title">
+            qlang(quantum language) with LLVM        </h1>
+                    <p class="header-subtitle">quantum computing</p>
+            </div>
+        </div>
+    </div>
+        <script>
+        window.mesmerizeSetHeaderTopSpacing();
+    </script>
+                        </div>
+    </div>
+    <div class="content post-page">
+        <div class="gridContainer">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-9">
+          					<div class="post-item post-item-single">
+          						<div id="post-367"class="post-367 post type-post status-publish format-standard hentry category-1">
+    <div class="post-content-single">
+        <h2>qlang(quantum language) with LLVM</h2>
+        <div class="row post-meta small">
+    <div class="col-md-10 col-xs-9">
+        <ul class="is-bar">
+            <li>投稿者: <a href="/author/niisato/" title="HirotakaNiisato の投稿" rel="author">HirotakaNiisato</a></li>
+            <li>に <a href="/category/%e6%9c%aa%e5%88%86%e9%a1%9e/" rel="category tag">未分類</a></li>
+            <li>投稿日: 2019-11-18</li>
+        </ul>
+    </div>
+    <div class="col-md-2 col-xs-3 text-right">
+        <i class="font-icon-post fa fa-comment-o"></i><span>0</span>
+    </div>
+</div>
+        <div class="post-content-inner">
+            
+<p>qlangというRISC-V 量子向けの独自のプログラミング言語をLLVM基盤上で開発していく。<br>前に<a rel="noreferrer noopener" aria-label="gccで行った内容 (新しいタブで開く)" href="/2019/10/01/add-extend-instruction-set-to-risc-v-gnu-toolchain/" target="_blank">gccで行った改造内容</a>から次のことが分かった。完全に同一のC言語のソースコードについて、</p>
+
+
+
+<ul class="wp-block-list"><li>RISC-V向け量子向けGCCでコンパイルして実行できる。</li><li>LLVM(clang)でフロントエンド=&gt;バイトコードにコンパイル、RISC-V GCCで結合出来る。</li></ul>
+
+
+
+<p>つまりRISC-V 量子改造したgccを使ってコンパイルをしても、LLVMを経由してコンパイルをしても同一のソースコードで動作させる事ができている(当然といえば当然だけど)。もちろん、数あるLLVM基盤のプログラミング言語もビルドしてRISC-Vエミュレータ上で動作させる事が出来ることも確認している。例えばbrainf*ckのような言語でも、RISC-V量子向けエミュレータ上でコンパイル＆動作することが出来ている。</p>
+
+
+
+<p>GCCに特殊な言語的な表現やライブラリを読み込まなくても、RISC-V量子向けの実装をGCCに対して行ったことで、量子向けに自由度が高くコード表現を出来てGCCでもLLVMでコンパイル&amp;実行できるようになった、という事になる。</p>
+
+
+
+<h3 class="wp-block-heading">■ qlang</h3>
+
+
+
+<p>量子コンピュータ向けのプログラミング環境は既に存在している物がある。<a rel="noreferrer noopener" aria-label="Q# (新しいタブで開く)" href="https://www.microsoft.com/en-us/quantum/development-kit" target="_blank">Q#</a>はMSが開発している環境になる。他にも<a rel="noreferrer noopener" aria-label="Qiskit (新しいタブで開く)" href="https://qiskit.org/" target="_blank">Qiskit</a>はIBMというように、各社で量子向け言語の取り組みがある。<br><br>LLVMについては最近だと<a rel="noreferrer noopener" aria-label="Rust(Firefox) (新しいタブで開く)" href="https://developer.mozilla.org/ja/docs/Mozilla/Rust" target="_blank">Rust(Firefox)</a>は有名だし、clangでコンパイルする物では<a rel="noreferrer noopener" aria-label="iPhone(swift/llvm) (新しいタブで開く)" href="https://developer.apple.com/swift/" target="_blank">iPhone(swift/llvm)</a>、<a rel="noreferrer noopener" aria-label="Android(NDK toolchain) (新しいタブで開く)" href="https://developer.android.com/ndk/guides/standalone_toolchain?hl=ja" target="_blank">Android(NDK toolchain)</a>も非常に有名ですね。<br><br>C/C++/C#(.NET)のような特定言語向けの環境や独自言語で量子プログラミングを行うというのも良いんだけど、LLVMという基盤上で動作させる事ができると、言語の種類や独自言語であってもコンパイルを行って動作させる事ができるという高い自由度を持つことが出来る。またLLVMの強い最適化も使える(カモ)という予想も出来る。<br><br>このようにLLVMを使うと、言語的な表現を柔軟に出来ることと、モダンなC++のクラスを使える、強力な最適化を行える、言語開発に必要なパーツが揃っているといった多くの利点を享受して言語開発を行うことが出来る。<br>つまり、スクラッチでゼロから独自のプラットフォーム・言語を開発するより、LLVMという強力な基盤の上で開発を行った方が良い。例えるなら、MSが.NET上でQ#という事なら、こっちはLLVM上でqlangということになる。</p>
+
+
+
+<p>という事で、ここからは量子向けのプログラミング言語 = qlang をLLVMを使って開発を行っていく。<strong>LLVM上で動作する量子向けのプログラミング言語は調べてみたところ、現在のところは全く無いため新しい取組になる。</strong>LLVMを使う利点は上記の通り。まぁ、この辺のアーキテクチャ・言語表現・プログラミングをやっている人にしかピンと来ないというのも若干泣けてくる所はあるけど。</p>
+
+
+
+<h3 class="wp-block-heading">■ qlang 基本構造</h3>
+
+
+
+<p>いまのところ次のような言語表現をしようとしている。</p>
+
+
+
+<pre>
+func main() {
+  qint x, y;
+  var z;
+
+  x = 0;   // initilize
+  y = 1;
+  x = y;   // quantum teleportation
+  z = 0;
+
+  if x == 1 {
+    write x;
+  }
+
+  while z <= 10 {
+    write z;
+    z = z + 1;
+  }
+}
+</pre>
+
+
+
+<p>"qint : 量子向けの変数" ということで、基本的な初期化・量子テレポーテーションを簡単に行えるようにする。言語実装としては<a rel="noreferrer noopener" aria-label="ナウで良い感じなgolang (新しいタブで開く)" href="https://proengineer.internous.co.jp/content/columnfeature/12511" target="_blank">ナウで良い感じなgolang</a>風にしている。2019年にエンジニアが学びたいプログラミング言語のNo.1らしいけど、自分は普通にgolangは昔からちょくちょく使っていて好きな言語の一つだったりする。<br>いまのところ、言語表現をLLVMで行ってコンパイル・RISC-V量子エミュレータ上で動作させる所まで行って、実際に"qlang test.q"のようにコンパイル＆動作させる所まで出来ている。あとはフロントエンドとバックエンドのつなぎをすればOKになる(コードはまだprivate repositoryで進めていて、このプロジェクトが終わったら公開されると思われ)。</p>
+
+
+
+<h3 class="wp-block-heading">■ qlang のコード分離</h3>
+
+
+
+<p>普通に開発を行ってもLLVMでqlang言語は出来るのだろうけど、量子側のコードとの分離という面白い問題設定が出てきて、少し行ってみることにした。というのは、LLVMによるIR最適化と量子側の最適化を別々に行うことが出来る方が良いだろうという指摘があった。確かに既存の古典コードの資産を活かしつつ、量子側のコードを組込み＆最適化できるような構造はおしゃれな感じがする。<br><br>ということで、単純にclangでシンプルな古典コードをビルドして、最適化有無の効果を見てみることにする。</p>
+
+
+
+<h3 class="wp-block-heading">■ LLVMの最適化の効果</h3>
+
+
+
+# 基本サンプルコード : test.c
+<pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+  int i = 0;
+  for (i = 0; i < 10; i++);
+  printf("%d\n", i);
+  return i;
+}
+</pre>
+
+
+
+<h4 class="wp-block-heading">■ 未最適化コード</h4>
+
+
+
+# 未最適化コード(LLVM IR) </br>
+# clang -target riscv64-unknown-linux-gnu -emit-llvm -S -o  test.ll test.c
+<pre>
+define dso_local signext i32 @main(i32 signext %0, i8** %1) #0 {
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i8**, align 8
+  %6 = alloca i32, align 4
+  %7 = alloca i32, align 4
+  store i32 0, i32* %3, align 4
+  store i32 %0, i32* %4, align 4
+  store i8** %1, i8*** %5, align 8
+  store i32 0, i32* %6, align 4
+  store i32 0, i32* %7, align 4
+  store i32 0, i32* %7, align 4
+  br label %8
+
+8:                                                ; preds = %12, %2
+  %9 = load i32, i32* %7, align 4
+  %10 = icmp slt i32 %9, 10
+  br i1 %10, label %11, label %15
+
+11:                                               ; preds = %8
+  br label %12
+
+12:                                               ; preds = %11
+  %13 = load i32, i32* %7, align 4
+  %14 = add nsw i32 %13, 1
+  store i32 %14, i32* %7, align 4
+  br label %8
+
+15:                                               ; preds = %8
+  %16 = load i32, i32* %7, align 4
+  %17 = call signext i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i64 0, i64 0), i32 signext %16)
+  %18 = load i32, i32* %7, align 4
+  ret i32 %18
+}
+
+declare dso_local signext i32 @printf(i8*, ...) #1
+</pre>
+
+
+
+# 未最適化 RISC-V アセンブリコード </br>
+<pre>
+main:                                   # @main
+# %bb.0:
+	addi	sp, sp, -48
+	sd	ra, 40(sp)
+	sd	s0, 32(sp)
+	addi	s0, sp, 48
+	sw	zero, -20(s0)
+	sw	a0, -24(s0)
+	sd	a1, -32(s0)
+	sw	zero, -36(s0)
+	sw	zero, -40(s0)
+	j	.LBB0_1
+.LBB0_1:                                # =>This Inner Loop Header: Depth=1
+	lw	a0, -40(s0)
+	addi	a1, zero, 9
+	blt	a1, a0, .LBB0_4
+	j	.LBB0_2
+.LBB0_2:                                #   in Loop: Header=BB0_1 Depth=1
+	j	.LBB0_3
+.LBB0_3:                                #   in Loop: Header=BB0_1 Depth=1
+	lw	a0, -40(s0)
+	addi	a0, a0, 1
+	sw	a0, -40(s0)
+	j	.LBB0_1
+.LBB0_4:
+	lw	a1, -40(s0)
+.LBB0_5:                                # Label of block must be emitted
+	auipc	a0, %pcrel_hi(.L.str)
+	addi	a0, a0, %pcrel_lo(.LBB0_5)
+	call	printf
+	lw	a0, -40(s0)
+	ld	s0, 32(sp)
+	ld	ra, 40(sp)
+	addi	sp, sp, 48
+	ret
+</pre>
+
+
+
+<h4 class="wp-block-heading">■ 最適化コード</h4>
+
+
+
+# 最適化コード(LLVM IR) </br>
+# clang -target riscv64-unknown-linux-gnu -emit-llvm -S -O3 -o  test.ll test.c
+<pre>
+define dso_local signext i32 @main(i32 signext %0, i8** nocapture readnone %1) local_unnamed_addr #0 {
+  %3 = tail call signext i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i64 0, i64 0), i32 signext 10)
+  ret i32 10
+}
+
+declare dso_local signext i32 @printf(i8* nocapture readonly, ...) local_unnamed_addr #1
+</pre>
+
+
+
+# 最適化 RISC-V アセンブリコード </br>
+<pre>
+main:                                   # @main
+# %bb.0:
+	addi	sp, sp, -16
+	sd	ra, 8(sp)
+.LBB0_1:                                # Label of block must be emitted
+	auipc	a0, %pcrel_hi(.L.str)
+	addi	a0, a0, %pcrel_lo(.LBB0_1)
+	addi	a1, zero, 10
+	call	printf
+	addi	a0, zero, 10
+	ld	ra, 8(sp)
+	addi	sp, sp, 16
+	ret
+</pre>
+
+
+
+<p>最適化するといきなり10という結果だけになる。ループも回さずにいきなり結果になる。<br><strong>LLVMフロントエンドIR、アセンブリコードのどちらも、見ての通り命令が非常に少なくシンプルになるため、見た目の可読性の向上・アプリの実行も高速化される。<br></strong>この強力なフロントエンドLLVM IRの最適化を活かすと、通常のコード・量子系のコードでそれぞれ良い感じの最適化を行うことが出来るようになると考えられる。次にコードの分離を行って動作するか試してみることにする。</p>
+
+
+
+<h3 class="wp-block-heading">■ LLVMによる古典・量子のコード分離最適化と結合</h3>
+
+
+
+# 古典側ソースコード </br>
+test.c
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int calc();
+int main(int argc, char* argv[]) {
+    int i = 0;
+    for (i = 0; i < 10; i++);
+    calc();
+    return i;
+}
+</pre>
+
+
+
+# 量子側ソースコード(RISC-V custom quantum ISA) </br>
+test_q.c
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int calc() {
+    int ret = 0;
+    // hadamard
+    asm volatile(
+    "qooh.k  qa0,qt1,qzero,1"
+    );
+
+    // measure
+    asm volatile(
+    "qmeas.k  %0,qt1,qzero,1"
+    :"=r"(ret)
+    :
+    );
+    return ret;
+}
+</pre>
+
+
+
+<p>ぶっちゃけ関数で分離しただけのシンプルなコードになっている。次にclangで最適化を付けてIRを見てみる。ここでLLVMの最適化の効果が出るのは古典側のコードだけで、量子側コードについては"LLVM Pass Managerを使った最適化"を実装することで解決されるだろうという想定になる。</p>
+
+
+
+# 古典側コード(LLVM IR) </br>
+clang -target riscv64-unknown-linux-gnu -emit-llvm -S -O3 -o test.ll test.c
+<pre>define dso_local signext i32 @main(i32 signext %0, i8** nocapture readnone %1) local_unnamed_addr #0 {
+  %3 = tail call signext i32 bitcast (i32 (...)* @calc to i32 ()*)() #2
+  ret i32 10
+}
+
+declare dso_local signext i32 @calc(...) local_unnamed_addr #1
+</pre>
+
+
+
+# 量子側コード(LLVM IR) </br>
+clang -target riscv64-unknown-linux-gnu -emit-llvm -S -O3 -o  test_q.ll test_q.c
+<pre>define dso_local signext i32 @calc() local_unnamed_addr #0 {
+  tail call void asm sideeffect "qooh.k  qa0,qt1,qzero,1", ""() #1, !srcloc !2
+  %1 = tail call i32 asm sideeffect "qmeas.k  $0,qt1,qzero,1", "=r"() #1, !srcloc !3
+  ret i32 %1
+}
+</pre>
+
+
+
+# 古典・量子を結合したコード(LLVM IR) </br>
+llvm-link test_q.ll test.ll -S -o link.ll
+<pre>
+; Function Attrs: nounwind
+define dso_local signext i32 @main(i32 signext %0, i8** nocapture readnone %1) local_unnamed_addr #0 {
+  tail call void asm sideeffect "qooh.k  qa0,qt1,qzero,1", ""() #1, !srcloc !2
+  %3 = tail call i32 asm sideeffect "qmeas.k  $0,qt1,qzero,1", "=r"() #1, !srcloc !3
+  ret i32 10
+}
+
+; Function Attrs: nounwind
+define dso_local signext i32 @calc() local_unnamed_addr #0 {
+  tail call void asm sideeffect "qooh.k  qa0,qt1,qzero,1", ""() #1, !srcloc !2
+  %1 = tail call i32 asm sideeffect "qmeas.k  $0,qt1,qzero,1", "=r"() #1, !srcloc !3
+  ret i32 %1
+}
+</pre>
+
+
+
+# 古典・量子を結合した RISC-V アセンブリコード  </br>
+<pre>
+main:                                   # @main
+# %bb.0:
+	#APP
+	qooh.k  qa0,qt1,qzero,1
+	#NO_APP
+	#APP
+	qmeas.k  a0,qt1,qzero,1
+	#NO_APP
+	addi	a0, zero, 10
+	ret
+
+</pre>
+
+
+
+<p>実行されるアセンブリコードが古典・量子の両方を結合された形になって、古典側コードはLLVMの最適化が効いたコードになっている。<br>量子側はLLVM Passを実装することで、連続した処理を消すなどの最適化が出来ればカッコいい感じになる。この辺は未実装でLLVM Pass Manager/Pass、opt あたりを参照しつつQuantumLogicalPassみたいなクラスを継承して作れば良いんだろうけど、まだよく分かっていない。<br><br>このようにそれぞれIRを出力して最適化を確認・修正することで、古典コード・量子コードで別々に最適化させた内容を容易に結合させることが出来るようになる。<br><br>この結果、通常/既存のコードや資産の最適化を活かしつつ、そのまま量子系の処理をソースコードに新しく含めて実装を進めることが出来るという流れ。</p>
+
+
+
+<p>とりあえず今の所、qlangの文法表現の所までは出来たから、あとはRISC-V量子側とのIR解釈&amp;つなぎこみを行うとqlangコンパイラが使えるようになる。最適化の分離はその次かな。</p>
+        </div>
+            </div>
+    
+	<nav class="navigation post-navigation" aria-label="投稿">
+		<h2 class="screen-reader-text">投稿ナビゲーション</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="/the-easiest-way-of-setup-qutip-on-windows/" rel="prev"><span class="meta-nav" aria-hidden="true">前: </span> <span class="screen-reader-text">前の記事: </span> <span class="post-title">The easiest way of setup QuTiP on Windows</span></a></div><div class="nav-next"><a href="/risc-v-spike-vs-quest/" rel="next"><span class="meta-nav" aria-hidden="true">次: </span> <span class="screen-reader-text">次の記事: </span> <span class="post-title">RISC-V spike vs QuEST</span></a></div></div>
+	</nav>    
+
+<div class="post-comments">
+	 
+  
+</div>
+<!-- /post-comments -->
+
+  <div class="comments-form">
+    <div class="comment-form">
+     		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/qlangquantum-language-with-llvm/#respond" style="display:none;">コメントをキャンセル</a></small></h3><form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-notes"><span id="email-notes">メールアドレスが公開されることはありません。</span> <span class="required-field-message"><span class="required">※</span> が付いている欄は必須項目です</span></p><p class="comment-form-comment"><label for="comment">コメント <span class="required">※</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">名前 <span class="required">※</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required="required" /></p>
+<p class="comment-form-email"><label for="email">メール <span class="required">※</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required="required" /></p>
+<p class="comment-form-url"><label for="url">サイト</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200" autocomplete="url" /></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">次回のコメントで使用するためブラウザーに自分の名前、メールアドレス、サイトを保存する。</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="button blue small" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='367' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="037349fb7e" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="38"/></p></form>	</div><!-- #respond -->
+	    </div>
+  </div>
+</div>
+                    </div>
+                </div>
+				        
+<div class="sidebar col-sm-4 col-md-3">
+    <div class="panel bg-color-white">
+        <div id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="/">
+    <label>
+        <span class="screen-reader-text">検索:</span>
+        <input type="search" class="search-field" placeholder="検索&hellip;" value="" name="s"/>
+    </label>
+</form>
+</div>
+		<div id="recent-posts-2" class="widget widget_recent_entries">
+		<h5 class="widgettitle">最近の投稿</h5>
+		<ul>
+											<li>
+					<a href="/handmade_qpu/">見えてきた自作QPU</a>
+									</li>
+											<li>
+					<a href="/openmpw_qpu/">OpenMPWで作るQPUの可能性</a>
+									</li>
+											<li>
+					<a href="/8-bit/">8 bit</a>
+									</li>
+											<li>
+					<a href="/risc-v-rvv-0-8-x-spike-pk/">RISC-V RVV 0.8.x spike/pk add K Extension</a>
+									</li>
+											<li>
+					<a href="/ogaki-mini-maker-faire-2020/">Ogaki Mini Maker Faire 2020</a>
+									</li>
+					</ul>
+
+		</div><div id="recent-comments-2" class="widget widget_recent_comments"><h5 class="widgettitle">最近のコメント</h5><ul id="recentcomments"><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-876">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-867">クラドニ図の作りかた</a> に <span class="comment-author-link">Hirotaka Niisato</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-866">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-864">クラドニ図の作りかた</a> に <span class="comment-author-link">Hirotaka Niisato</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-863">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li></ul></div><div id="archives-2" class="widget widget_archive"><h5 class="widgettitle">アーカイブ</h5>
+			<ul>
+					<li><a href="/2023/12/">2023年12月</a></li>
+	<li><a href="/2022/12/">2022年12月</a></li>
+	<li><a href="/2022/01/">2022年1月</a></li>
+	<li><a href="/2021/01/">2021年1月</a></li>
+	<li><a href="/2020/12/">2020年12月</a></li>
+	<li><a href="/2020/11/">2020年11月</a></li>
+	<li><a href="/2020/06/">2020年6月</a></li>
+	<li><a href="/2020/03/">2020年3月</a></li>
+	<li><a href="/2020/02/">2020年2月</a></li>
+	<li><a href="/2020/01/">2020年1月</a></li>
+	<li><a href="/2019/12/">2019年12月</a></li>
+	<li><a href="/2019/11/">2019年11月</a></li>
+	<li><a href="/2019/10/">2019年10月</a></li>
+	<li><a href="/2019/09/">2019年9月</a></li>
+	<li><a href="/2019/08/">2019年8月</a></li>
+	<li><a href="/2019/07/">2019年7月</a></li>
+			</ul>
+
+			</div><div id="categories-2" class="widget widget_categories"><h5 class="widgettitle">カテゴリー</h5>
+			<ul>
+					<li class="cat-item cat-item-1"><a href="/category/%e6%9c%aa%e5%88%86%e9%a1%9e/">未分類</a>
+</li>
+			</ul>
+
+			</div><div id="meta-2" class="widget widget_meta"><h5 class="widgettitle">メタ情報</h5>
+		<ul>
+						<li><a href="/wp-login.php">ログイン</a></li>
+			<li><a href="/feed/">投稿フィード</a></li>
+			<li><a href="/comments/feed/">コメントフィード</a></li>
+
+			<li><a href="https://ja.wordpress.org/">WordPress.org</a></li>
+		</ul>
+
+		</div>    </div>
+</div>
+            </div>
+        </div>
+    </div>
+	<div  class='footer footer-simple'>
+    <div  class='footer-content center-xs'>
+        <div class="gridContainer">
+	        <div class="row middle-xs footer-content-row">
+	            <div class="footer-content-col col-xs-12">
+	                    <p  class="copyright">&copy;&nbsp;&nbsp;2026&nbsp;SIProp量子化計画.&nbsp;WordPress と<a target="_blank" href="https://extendthemes.com/go/built-with-highlight/" class="mesmerize-theme-link">Highlight Theme</a>を使って構築した</p>	            </div>
+	        </div>
+	    </div>
+    </div>
+</div>
+	</div>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/highlight/*","/wp-content/themes/mesmerize/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript"  defer="defer" src="/wp-includes/js/imagesloaded.min.js?ver=5.0.0" id="imagesloaded-js"></script>
+<script type="text/javascript"  defer="defer" src="/wp-includes/js/masonry.min.js?ver=4.2.2" id="masonry-js"></script>
+<script type="text/javascript"  defer="defer" src="/wp-content/themes/mesmerize/assets/js/theme.bundle.min.js?ver=1.0.13" id="mesmerize-theme-js"></script>
+<script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=6.9.4" id="comment-reply-js" async="async" data-wp-strategy="async" fetchpriority="low"></script>
+<script type="text/javascript" src="/wp-content/themes/highlight/assets/js/theme-child.js" id="theme-child-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.6" id="akismet-form-js"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://quantum.siprop.org/wp-includes/js/wp-emoji-release.min.js?ver=6.9.4"}}
+</script>
+<script type="module">
+/* <![CDATA[ */
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://quantum.siprop.org/wp-includes/js/wp-emoji-loader.min.js
+/* ]]> */
+</script>
+</body>
+</html>

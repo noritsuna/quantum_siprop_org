@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Mon, 20 Apr 2026 21:18:05 GMT">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+	    <script>
+        (function (exports, d) {
+            var _isReady = false,
+                _event,
+                _fns = [];
+
+            function onReady(event) {
+                d.removeEventListener("DOMContentLoaded", onReady);
+                _isReady = true;
+                _event = event;
+                _fns.forEach(function (_fn) {
+                    var fn = _fn[0],
+                        context = _fn[1];
+                    fn.call(context || exports, window.jQuery);
+                });
+            }
+
+            function onReadyIe(event) {
+                if (d.readyState === "complete") {
+                    d.detachEvent("onreadystatechange", onReadyIe);
+                    _isReady = true;
+                    _event = event;
+                    _fns.forEach(function (_fn) {
+                        var fn = _fn[0],
+                            context = _fn[1];
+                        fn.call(context || exports, event);
+                    });
+                }
+            }
+
+            d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+            d.attachEvent && d.attachEvent("onreadystatechange", onReadyIe);
+
+            function domReady(fn, context) {
+                if (_isReady) {
+                    fn.call(context, _event);
+                }
+
+                _fns.push([fn, context]);
+            }
+
+            exports.mesmerizeDomReady = domReady;
+        })(window, document);
+    </script>
+    <title>RISC-V spike vs QuEST | SIProp量子化計画</title>
+<meta name='robots' content='max-image-preview:large' />
+
+<!-- All In One SEO Pack 3.7.1ob_start_detected [-1,-1] -->
+<script type="application/ld+json" class="aioseop-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://quantum.siprop.org/#organization","url":"https://quantum.siprop.org/","name":"SIProp量子化計画","sameAs":[]},{"@type":"WebSite","@id":"https://quantum.siprop.org/#website","url":"https://quantum.siprop.org/","name":"SIProp量子化計画","publisher":{"@id":"https://quantum.siprop.org/#organization"}},{"@type":"WebPage","@id":"https://quantum.siprop.org/risc-v-spike-vs-quest/#webpage","url":"https://quantum.siprop.org/risc-v-spike-vs-quest/","inLanguage":"ja","name":"RISC-V spike vs QuEST","isPartOf":{"@id":"https://quantum.siprop.org/#website"},"breadcrumb":{"@id":"https://quantum.siprop.org/risc-v-spike-vs-quest/#breadcrumblist"},"datePublished":"2019-11-20T10:27:19+09:00","dateModified":"2019-11-29T02:36:16+09:00"},{"@type":"Article","@id":"https://quantum.siprop.org/risc-v-spike-vs-quest/#article","isPartOf":{"@id":"https://quantum.siprop.org/risc-v-spike-vs-quest/#webpage"},"author":{"@id":"https://quantum.siprop.org/author/niisato/#author"},"headline":"RISC-V spike vs QuEST","datePublished":"2019-11-20T10:27:19+09:00","dateModified":"2019-11-29T02:36:16+09:00","commentCount":0,"mainEntityOfPage":{"@id":"https://quantum.siprop.org/risc-v-spike-vs-quest/#webpage"},"publisher":{"@id":"https://quantum.siprop.org/#organization"},"articleSection":"未分類","image":{"@type":"ImageObject","@id":"https://quantum.siprop.org/risc-v-spike-vs-quest/#primaryimage","url":"https://quantum.siprop.org/wp-content/uploads/2019/11/IMG_20191125_234542.jpg"}},{"@type":"Person","@id":"https://quantum.siprop.org/author/niisato/#author","name":"HirotakaNiisato","sameAs":[],"image":{"@type":"ImageObject","@id":"https://quantum.siprop.org/#personlogo","url":"https://secure.gravatar.com/avatar/2b5721bee955f54261390d01588d5a533bad37d7a7dfd39b957f0f235d5110d6?s=96&d=mm&r=g","width":96,"height":96,"caption":"HirotakaNiisato"}},{"@type":"BreadcrumbList","@id":"https://quantum.siprop.org/risc-v-spike-vs-quest/#breadcrumblist","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://quantum.siprop.org/","url":"https://quantum.siprop.org/","name":"SIProp量子化計画"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://quantum.siprop.org/risc-v-spike-vs-quest/","url":"https://quantum.siprop.org/risc-v-spike-vs-quest/","name":"RISC-V spike vs QuEST"}}]}]}</script>
+<link rel="canonical" href="https://quantum.siprop.org/risc-v-spike-vs-quest/" />
+<!-- All In One SEO Pack -->
+<link rel='dns-prefetch' href="//fonts.googleapis.com" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fquantum.siprop.org%2Frisc-v-spike-vs-quest%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fquantum.siprop.org%2Frisc-v-spike-vs-quest%2F&#038;format=xml" />
+<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id='wp-block-library-inline-css' type='text/css'>
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}.has-text-align-center{text-align:center}.has-text-align-left{text-align:left}.has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=wp-block-library-inline-css */
+</style>
+<style id='wp-block-heading-inline-css' type='text/css'>
+h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:1.25em 2.375em}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/heading/style.min.css */
+</style>
+<style id='wp-block-image-inline-css' type='text/css'>
+.wp-block-image>a,.wp-block-image>figure>a{display:inline-block}.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}@media not (prefers-reduced-motion){.wp-block-image img.hide{visibility:hidden}.wp-block-image img.show{animation:show-content-image .4s}}.wp-block-image[style*=border-radius] img,.wp-block-image[style*=border-radius]>a{border-radius:inherit}.wp-block-image.has-custom-border img{box-sizing:border-box}.wp-block-image.aligncenter{text-align:center}.wp-block-image.alignfull>a,.wp-block-image.alignwide>a{width:100%}.wp-block-image.alignfull img,.wp-block-image.alignwide img{height:auto;width:100%}.wp-block-image .aligncenter,.wp-block-image .alignleft,.wp-block-image .alignright,.wp-block-image.aligncenter,.wp-block-image.alignleft,.wp-block-image.alignright{display:table}.wp-block-image .aligncenter>figcaption,.wp-block-image .alignleft>figcaption,.wp-block-image .alignright>figcaption,.wp-block-image.aligncenter>figcaption,.wp-block-image.alignleft>figcaption,.wp-block-image.alignright>figcaption{caption-side:bottom;display:table-caption}.wp-block-image .alignleft{float:left;margin:.5em 1em .5em 0}.wp-block-image .alignright{float:right;margin:.5em 0 .5em 1em}.wp-block-image .aligncenter{margin-left:auto;margin-right:auto}.wp-block-image :where(figcaption){margin-bottom:1em;margin-top:.5em}.wp-block-image.is-style-circle-mask img{border-radius:9999px}@supports ((-webkit-mask-image:none) or (mask-image:none)) or (-webkit-mask-image:none){.wp-block-image.is-style-circle-mask img{border-radius:0;-webkit-mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-mode:alpha;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}}:root :where(.wp-block-image.is-style-rounded img,.wp-block-image .is-style-rounded img){border-radius:9999px}.wp-block-image figure{margin:0}.wp-lightbox-container{display:flex;flex-direction:column;position:relative}.wp-lightbox-container img{cursor:zoom-in}.wp-lightbox-container img:hover+button{opacity:1}.wp-lightbox-container button{align-items:center;backdrop-filter:blur(16px) saturate(180%);background-color:#5a5a5a40;border:none;border-radius:4px;cursor:zoom-in;display:flex;height:20px;justify-content:center;opacity:0;padding:0;position:absolute;right:16px;text-align:center;top:16px;width:20px;z-index:100}@media not (prefers-reduced-motion){.wp-lightbox-container button{transition:opacity .2s ease}}.wp-lightbox-container button:focus-visible{outline:3px auto #5a5a5a40;outline:3px auto -webkit-focus-ring-color;outline-offset:3px}.wp-lightbox-container button:hover{cursor:pointer;opacity:1}.wp-lightbox-container button:focus{opacity:1}.wp-lightbox-container button:focus,.wp-lightbox-container button:hover,.wp-lightbox-container button:not(:hover):not(:active):not(.has-background){background-color:#5a5a5a40;border:none}.wp-lightbox-overlay{box-sizing:border-box;cursor:zoom-out;height:100vh;left:0;overflow:hidden;position:fixed;top:0;visibility:hidden;width:100%;z-index:100000}.wp-lightbox-overlay .close-button{align-items:center;cursor:pointer;display:flex;justify-content:center;min-height:40px;min-width:40px;padding:0;position:absolute;right:calc(env(safe-area-inset-right) + 16px);top:calc(env(safe-area-inset-top) + 16px);z-index:5000000}.wp-lightbox-overlay .close-button:focus,.wp-lightbox-overlay .close-button:hover,.wp-lightbox-overlay .close-button:not(:hover):not(:active):not(.has-background){background:none;border:none}.wp-lightbox-overlay .lightbox-image-container{height:var(--wp--lightbox-container-height);left:50%;overflow:hidden;position:absolute;top:50%;transform:translate(-50%,-50%);transform-origin:top left;width:var(--wp--lightbox-container-width);z-index:9999999999}.wp-lightbox-overlay .wp-block-image{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:center;margin:0;position:relative;transform-origin:0 0;width:100%;z-index:3000000}.wp-lightbox-overlay .wp-block-image img{height:var(--wp--lightbox-image-height);min-height:var(--wp--lightbox-image-height);min-width:var(--wp--lightbox-image-width);width:var(--wp--lightbox-image-width)}.wp-lightbox-overlay .wp-block-image figcaption{display:none}.wp-lightbox-overlay button{background:none;border:none}.wp-lightbox-overlay .scrim{background-color:#fff;height:100%;opacity:.9;position:absolute;width:100%;z-index:2000000}.wp-lightbox-overlay.active{visibility:visible}@media not (prefers-reduced-motion){.wp-lightbox-overlay.active{animation:turn-on-visibility .25s both}.wp-lightbox-overlay.active img{animation:turn-on-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active){animation:turn-off-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active) img{animation:turn-off-visibility .25s both}.wp-lightbox-overlay.zoom.active{animation:none;opacity:1;visibility:visible}.wp-lightbox-overlay.zoom.active .lightbox-image-container{animation:lightbox-zoom-in .4s}.wp-lightbox-overlay.zoom.active .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.active .scrim{animation:turn-on-visibility .4s forwards}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active){animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container{animation:lightbox-zoom-out .4s}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .scrim{animation:turn-off-visibility .4s forwards}}@keyframes show-content-image{0%{visibility:hidden}99%{visibility:hidden}to{visibility:visible}}@keyframes turn-on-visibility{0%{opacity:0}to{opacity:1}}@keyframes turn-off-visibility{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible}to{opacity:0;visibility:hidden}}@keyframes lightbox-zoom-in{0%{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale))}to{transform:translate(-50%,-50%) scale(1)}}@keyframes lightbox-zoom-out{0%{transform:translate(-50%,-50%) scale(1);visibility:visible}99%{visibility:visible}to{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale));visibility:hidden}}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/image/style.min.css */
+</style>
+<style id='wp-block-list-inline-css' type='text/css'>
+ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:1.25em 2.375em}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/list/style.min.css */
+</style>
+<style id='wp-block-paragraph-inline-css' type='text/css'>
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/paragraph/style.min.css */
+</style>
+<style id='wp-block-table-inline-css' type='text/css'>
+.wp-block-table{overflow-x:auto}.wp-block-table table{border-collapse:collapse;width:100%}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{border:1px solid;padding:.5em}.wp-block-table .has-fixed-layout{table-layout:fixed;width:100%}.wp-block-table .has-fixed-layout td,.wp-block-table .has-fixed-layout th{word-break:break-word}.wp-block-table.aligncenter,.wp-block-table.alignleft,.wp-block-table.alignright{display:table;width:auto}.wp-block-table.aligncenter td,.wp-block-table.aligncenter th,.wp-block-table.alignleft td,.wp-block-table.alignleft th,.wp-block-table.alignright td,.wp-block-table.alignright th{word-break:break-word}.wp-block-table .has-subtle-light-gray-background-color{background-color:#f3f4f5}.wp-block-table .has-subtle-pale-green-background-color{background-color:#e9fbe5}.wp-block-table .has-subtle-pale-blue-background-color{background-color:#e7f5fe}.wp-block-table .has-subtle-pale-pink-background-color{background-color:#fcf0ef}.wp-block-table.is-style-stripes{background-color:initial;border-collapse:inherit;border-spacing:0}.wp-block-table.is-style-stripes tbody tr:nth-child(odd){background-color:#f0f0f0}.wp-block-table.is-style-stripes.has-subtle-light-gray-background-color tbody tr:nth-child(odd){background-color:#f3f4f5}.wp-block-table.is-style-stripes.has-subtle-pale-green-background-color tbody tr:nth-child(odd){background-color:#e9fbe5}.wp-block-table.is-style-stripes.has-subtle-pale-blue-background-color tbody tr:nth-child(odd){background-color:#e7f5fe}.wp-block-table.is-style-stripes.has-subtle-pale-pink-background-color tbody tr:nth-child(odd){background-color:#fcf0ef}.wp-block-table.is-style-stripes td,.wp-block-table.is-style-stripes th{border-color:#0000}.wp-block-table.is-style-stripes{border-bottom:1px solid #f0f0f0}.wp-block-table .has-border-color td,.wp-block-table .has-border-color th,.wp-block-table .has-border-color tr,.wp-block-table .has-border-color>*{border-color:inherit}.wp-block-table table[style*=border-top-color] tr:first-child,.wp-block-table table[style*=border-top-color] tr:first-child td,.wp-block-table table[style*=border-top-color] tr:first-child th,.wp-block-table table[style*=border-top-color]>*,.wp-block-table table[style*=border-top-color]>* td,.wp-block-table table[style*=border-top-color]>* th{border-top-color:inherit}.wp-block-table table[style*=border-top-color] tr:not(:first-child){border-top-color:initial}.wp-block-table table[style*=border-right-color] td:last-child,.wp-block-table table[style*=border-right-color] th,.wp-block-table table[style*=border-right-color] tr,.wp-block-table table[style*=border-right-color]>*{border-right-color:inherit}.wp-block-table table[style*=border-bottom-color] tr:last-child,.wp-block-table table[style*=border-bottom-color] tr:last-child td,.wp-block-table table[style*=border-bottom-color] tr:last-child th,.wp-block-table table[style*=border-bottom-color]>*,.wp-block-table table[style*=border-bottom-color]>* td,.wp-block-table table[style*=border-bottom-color]>* th{border-bottom-color:inherit}.wp-block-table table[style*=border-bottom-color] tr:not(:last-child){border-bottom-color:initial}.wp-block-table table[style*=border-left-color] td:first-child,.wp-block-table table[style*=border-left-color] th,.wp-block-table table[style*=border-left-color] tr,.wp-block-table table[style*=border-left-color]>*{border-left-color:inherit}.wp-block-table table[style*=border-style] td,.wp-block-table table[style*=border-style] th,.wp-block-table table[style*=border-style] tr,.wp-block-table table[style*=border-style]>*{border-style:inherit}.wp-block-table table[style*=border-width] td,.wp-block-table table[style*=border-width] th,.wp-block-table table[style*=border-width] tr,.wp-block-table table[style*=border-width]>*{border-style:inherit;border-width:inherit}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/table/style.min.css */
+</style>
+
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='mesmerize-parent-css' href="/wp-content/themes/mesmerize/style.min.css?ver=6.9.4" type='text/css' media='all' />
+<link rel='stylesheet' id='mesmerize-style-css' href="/wp-content/themes/highlight/style.min.css?ver=1.0.13" type='text/css' media='all' />
+<style id='mesmerize-style-inline-css' type='text/css'>
+img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
+/** cached kirki style */@media screen and (min-width: 768px){.header{background-position:center center;}}.header-homepage:not(.header-slide).color-overlay:before{background:#000000;}.header-homepage:not(.header-slide) .background-overlay,.header-homepage:not(.header-slide).color-overlay::before{opacity:0.7;}.header-homepage-arrow{font-size:calc( 50px * 0.84 );bottom:20px;background:rgba(255,255,255,0);}.header-homepage-arrow > i.fa{width:50px;height:50px;}.header-homepage-arrow > i{color:#ffffff;}.header-homepage .header-description-row{padding-top:30%;padding-bottom:0%;}.inner-header-description{padding-top:8%;padding-bottom:8%;}@media screen and (max-width:767px){.header-homepage .header-description-row{padding-top:15%;padding-bottom:15%;}}@media only screen and (min-width: 768px){.header-content .align-holder{width:80%!important;}.inner-header-description{text-align:center!important;}}
+/*# sourceURL=mesmerize-style-inline-css */
+</style>
+<link rel='stylesheet' id='mesmerize-style-bundle-css' href="/wp-content/themes/mesmerize/assets/css/theme.bundle.min.css?ver=1.0.13" type='text/css' media='all' />
+<link rel='stylesheet' id='mesmerize-fonts-css'  data-href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" id="jquery-core-js-after">
+/* <![CDATA[ */
+    
+        (function () {
+            function setHeaderTopSpacing() {
+
+                setTimeout(function() {
+                  var headerTop = document.querySelector('.header-top');
+                  var headers = document.querySelectorAll('.header-wrapper .header,.header-wrapper .header-homepage');
+
+                  for (var i = 0; i < headers.length; i++) {
+                      var item = headers[i];
+                      item.style.paddingTop = headerTop.getBoundingClientRect().height + "px";
+                  }
+
+                    var languageSwitcher = document.querySelector('.mesmerize-language-switcher');
+
+                    if(languageSwitcher){
+                        languageSwitcher.style.top = "calc( " +  headerTop.getBoundingClientRect().height + "px + 1rem)" ;
+                    }
+                    
+                }, 100);
+
+             
+            }
+
+            window.addEventListener('resize', setHeaderTopSpacing);
+            window.mesmerizeSetHeaderTopSpacing = setHeaderTopSpacing
+            mesmerizeDomReady(setHeaderTopSpacing);
+        })();
+    
+    
+//# sourceURL=jquery-core-js-after
+/* ]]> */
+</script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/posts/552" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.9.4 with StaticPress ver.0.4.5" />
+        <style data-name="header-gradient-overlay">
+            .header .background-overlay {
+                background: linear-gradient(135deg , rgba(102,126,234, 0.8) 0%, rgba(118,75,162,0.8) 100%);
+            }
+        </style>
+        <script type="text/javascript" data-name="async-styles">
+        (function () {
+            var links = document.querySelectorAll('link[data-href]');
+            for (var i = 0; i < links.length; i++) {
+                var item = links[i];
+                item.href = item.getAttribute('data-href')
+            }
+        })();
+    </script>
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>    <style id="page-content-custom-styles">
+            </style>
+        <style data-name="background-content-colors">
+        .mesmerize-inner-page .page-content,
+        .mesmerize-inner-page .content,
+        .mesmerize-front-page.mesmerize-content-padding .page-content {
+            background-color: #ffffff;
+        }
+    </style>
+    </head>
+
+<body class="wp-singular post-template-default single single-post postid-552 single-format-standard wp-theme-mesmerize wp-child-theme-highlight mesmerize-inner-page">
+
+<div  id="page-top" class="header-top">
+		<div class="navigation-bar logo-above-menu "  data-sticky='0'  data-sticky-mobile='1'  data-sticky-to='top' >
+    <div class="navigation-wrapper ">
+        <div class="row basis-auto between-xs">
+	        <div class="logo_col col-xs col-sm-12 center-sm">
+	            <a class="text-logo" data-type="group"  data-dynamic-mod="true" href="/">SIProp量子化計画</a>	        </div>
+	        <div class="main_menu_col col-xs-fit col-sm">
+	            <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-21"><a href="/blog/">Blog</a></li>
+</ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false">
+        <div class="bubble"></div>
+        <i class="fa fa-bars"></i>
+    </a>
+    <div id="offcanvas-wrapper" class="hide force-hide  offcanvas-right">
+        <div class="offcanvas-top">
+            <div class="logo-holder">
+                <a class="text-logo" data-type="group"  data-dynamic-mod="true" href="/">SIProp量子化計画</a>            </div>
+        </div>
+        <div id="offcanvas-menu" class="menu-menu-1-container"><ul id="offcanvas_menu" class="offcanvas_menu"><li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-21"><a href="/blog/">Blog</a></li>
+</ul></div>
+            </div>
+    	        </div>
+	    </div>
+    </div>
+</div>
+</div>
+
+<div id="page" class="site">
+    <div class="header-wrapper">
+        <div  class='header  color-overlay  custom-mobile-image' style='; background-image:url(&quot;https://quantum.siprop.org/wp-content/themes/highlight/assets/images/hero-inner.jpg&quot;); background-color:#6a73da' data-parallax-depth='20'>
+            <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
+        <div class="row header-description-row">
+    <div class="col-xs col-xs-12">
+        <h1 class="hero-title">
+            RISC-V spike vs QuEST        </h1>
+                    <p class="header-subtitle">quantum computing</p>
+            </div>
+        </div>
+    </div>
+        <script>
+        window.mesmerizeSetHeaderTopSpacing();
+    </script>
+                        </div>
+    </div>
+    <div class="content post-page">
+        <div class="gridContainer">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-9">
+          					<div class="post-item post-item-single">
+          						<div id="post-552"class="post-552 post type-post status-publish format-standard hentry category-1">
+    <div class="post-content-single">
+        <h2>RISC-V spike vs QuEST</h2>
+        <div class="row post-meta small">
+    <div class="col-md-10 col-xs-9">
+        <ul class="is-bar">
+            <li>投稿者: <a href="/author/niisato/" title="HirotakaNiisato の投稿" rel="author">HirotakaNiisato</a></li>
+            <li>に <a href="/category/%e6%9c%aa%e5%88%86%e9%a1%9e/" rel="category tag">未分類</a></li>
+            <li>投稿日: 2019-11-20</li>
+        </ul>
+    </div>
+    <div class="col-md-2 col-xs-3 text-right">
+        <i class="font-icon-post fa fa-comment-o"></i><span>0</span>
+    </div>
+</div>
+        <div class="post-content-inner">
+            
+<p>RISC-V SpikeのエミュレーターにはQuESTを組み込んで、量子系の命令セットをカスタムとして用意した。そこで気になるのが、QuEST(on x86)で普通に書いたプログラムとRISC-V Spike with QuESTを通して動かしたとき、どっちが早いのか？という単純な疑問になる。</p>
+
+
+
+<p>単純に考えると、どっちも終端しているのはQuESTなんだし結果は一緒では？と思うかも知れない。いくらRISC-V ISAで動作するQuESTとx86上で動作するといっても&#8230;それほど違わないだろうと。自分もやってみるまでそうだった。ただ、実際の結果は全く違うものになった。</p>
+
+
+
+<h3 class="wp-block-heading">■ 環境とソースコード</h3>
+
+
+
+<ul class="wp-block-list"><li>環境<br>VirtualBox 6.0.12 on Windows 10<br>OS : Ubuntu 18.04<br>CPU : 6vcpu(Intel Core i7-8750, 2.2GHz)<br>MEM : 16Gbyte(DDR4 2400MHz)<br>HD : 512GB PCIe M.2 SSD</li></ul>
+
+
+
+&#8211; RISC-V Spike quantum custom instruction set source code.
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char* argv[]) {
+    int ret1 = 0;
+    int i = 0;
+
+    // call qooh
+    for (i = 0; i < 10000000; i++) {
+        asm volatile(
+        "qooh.k  qa0,qt1,qzero,1;"
+        "qmeas.k  %0,qt1,qzero,1;"
+        :"=r"(ret1)
+        :
+        );
+    }
+    printf("%d\n", ret1);
+
+    return 0;
+}
+</pre>
+
+
+
+- QuEST source code.
+<pre>
+#include &lt;stdio.h&gt;
+#include "QuEST.h"
+
+int main (int narg, char *varg[]) {
+
+    QuESTEnv env = createQuESTEnv();
+    Qureg qubits = createQureg(4, env);
+    initZeroState(qubits);
+
+
+    for (int i = 0; i < 10000000; i++) {
+      hadamard(qubits, 0);
+      int outcome = measure(qubits, 0);
+    }
+
+    destroyQureg(qubits, env); 
+    destroyQuESTEnv(env);
+
+    return 0;
+}
+</pre>
+
+
+
+<p>以上の環境で計測してみる。マシン環境はVirtualBox上のUbuntuで至って普通のマシン環境になる。量子側のコードは4qbit、hadamardして計測を1000万回繰り返すだけのこちらもシンプルな処理になる。</p>
+
+
+
+<h3 class="wp-block-heading">■ 計測結果</h3>
+
+
+
+<p>それぞれプログラムを10回実行したときの値は以下の通り。単位は秒で。</p>
+
+
+
+<table class="wp-block-table"><tbody><tr><td></td><td>Spike</td><td>QuEST</td></tr><tr><td>1</td><td>4.632</td><td>46.638</td></tr><tr><td>2</td><td>4.538</td><td>45.148</td></tr><tr><td>3</td><td>4.589</td><td>44.374</td></tr><tr><td>4</td><td>4.788</td><td>45.510</td></tr><tr><td>5</td><td>4.867</td><td>44.584</td></tr><tr><td>6</td><td>4.478</td><td>45.333</td></tr><tr><td>7</td><td>4.418</td><td>44.209</td></tr><tr><td>8</td><td>4.458</td><td>44.406</td></tr><tr><td>9</td><td>4.456</td><td>44.755</td></tr><tr><td>10</td><td>4.456</td><td>44.572</td></tr><tr><td>avg</td><td>4.568</td><td>44.952</td></tr></tbody></table>
+
+
+
+<h3 class="wp-block-heading">■ 考察</h3>
+
+
+
+<p>なぜ、このような結果になったのか？RISC-V Spikeエミュレーターに搭載したQuESTの方が10倍も高速に動作するという結果になった。<br>いくらISAの違いといってもこの差はさすがに無いだろう...ということで、この原因について考えてみたところ、それぞれの動作の違いが大きい。これはプログラムを動かしているときの統計情報を見てみると分かりやすい。</p>
+
+
+
+<h4 class="wp-block-heading">■ Quest 動作状況</h4>
+
+
+
+CPU負荷
+<pre>                CPU     %user     %nice   %system   %iowait    %steal     %idle
+06:50:17 PM     all      0.64      0.00      0.00      0.00      0.00     99.36
+06:50:18 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:19 PM     all     99.33      0.00      0.67      0.00      0.00      0.00
+06:50:20 PM     all     99.00      0.00      1.00      0.00      0.00      0.00
+06:50:21 PM     all     99.00      0.00      1.00      0.00      0.00      0.00
+06:50:22 PM     all     99.67      0.00      0.33      0.00      0.00      0.00
+06:50:23 PM     all     99.67      0.00      0.33      0.00      0.00      0.00
+06:50:24 PM     all     99.33      0.00      0.50      0.00      0.00      0.17
+06:50:25 PM     all     99.16      0.00      0.50      0.00      0.00      0.34
+06:50:26 PM     all     98.84      0.00      1.16      0.00      0.00      0.00
+06:50:27 PM     all    100.00      0.00      0.00      0.00      0.00      0.00
+06:50:28 PM     all     99.00      0.00      0.50      0.00      0.00      0.50
+06:50:29 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:30 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:31 PM     all     99.50      0.00      0.33      0.00      0.00      0.17
+06:50:32 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:33 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:34 PM     all     99.33      0.00      0.67      0.00      0.00      0.00
+06:50:35 PM     all     99.00      0.00      1.00      0.00      0.00      0.00
+06:50:36 PM     all     99.17      0.00      0.83      0.00      0.00      0.00
+06:50:37 PM     all     99.00      0.00      1.00      0.00      0.00      0.00
+06:50:38 PM     all     98.82      0.00      1.01      0.00      0.00      0.17
+06:50:39 PM     all     98.32      0.00      0.67      0.00      0.00      1.01
+06:50:40 PM     all     99.33      0.00      0.67      0.00      0.00      0.00
+06:50:41 PM     all     99.33      0.00      0.50      0.00      0.00      0.17
+06:50:42 PM     all     98.66      0.00      1.34      0.00      0.00      0.00
+06:50:43 PM     all     99.33      0.00      0.50      0.00      0.00      0.17
+06:50:44 PM     all     98.50      0.00      1.17      0.00      0.00      0.33
+06:50:45 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:46 PM     all     99.33      0.00      0.67      0.00      0.00      0.00
+06:50:47 PM     all     99.67      0.00      0.33      0.00      0.00      0.00
+06:50:48 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:49 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:50 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:51 PM     all     99.67      0.00      0.33      0.00      0.00      0.00
+06:50:52 PM     all     99.33      0.00      0.67      0.00      0.00      0.00
+06:50:53 PM     all     99.33      0.00      0.67      0.00      0.00      0.00
+06:50:54 PM     all     99.67      0.00      0.33      0.00      0.00      0.00
+06:50:55 PM     all     99.50      0.00      0.50      0.00      0.00      0.00
+06:50:56 PM     all     99.33      0.00      0.67      0.00      0.00      0.00
+06:50:57 PM     all     99.00      0.00      1.00      0.00      0.00      0.00
+06:50:58 PM     all     99.00      0.00      0.83      0.00      0.00      0.17
+06:50:59 PM     all     99.67      0.00      0.33      0.00      0.00      0.00
+06:51:00 PM     all     98.49      0.00      1.18      0.00      0.00      0.34
+06:51:01 PM     all     53.83      0.00      0.33      0.00      0.00     45.83
+06:51:02 PM     all      0.00      0.00      0.00      0.00      0.00    100.00
+</pre>
+
+
+
+メモリ利用状況
+<pre>            kbmemfree   kbavail kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit  kbactive   kbinact   kbdirty
+06:49:17 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:18 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:19 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:20 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:21 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:22 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:23 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:24 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:25 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:26 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:27 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:28 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:29 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:30 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:31 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:32 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:33 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:34 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:35 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:36 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:38 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:39 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:40 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:41 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:42 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:43 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:44 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:45 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:46 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:47 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:48 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:49 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:50 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:51 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:52 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:53 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:54 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:55 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:56 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:57 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:58 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:49:59 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:50:00 PM  14417472  15906772   2007632     12.22    216628   1441552    432404      2.11   1194476    519416         0
+06:50:01 PM  14416672  15905972   2008432     12.23    216636   1441544    432404      2.11   1195456    519416         0
+06:50:02 PM  14412824  15902200   2012280     12.25    216644   1441560    419328      2.05   1197688    519336       272
+06:50:03 PM  14412980  15902356   2012124     12.25    216644   1441560    419328      2.05   1197588    519332       272
+06:50:04 PM  14412980  15902356   2012124     12.25    216644   1441560    419328      2.05   1197588    519332       272
+06:50:05 PM  14412980  15902356   2012124     12.25    216644   1441560    419328      2.05   1197588    519332       272
+06:50:06 PM  14412948  15902324   2012156     12.25    216644   1441560    419328      2.05   1197588    519332         0
+06:50:07 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332        48
+06:50:08 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332        48
+06:50:09 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332        48
+06:50:10 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332        48
+06:50:11 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332        48
+06:50:12 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332         0
+06:50:14 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332         0
+06:50:15 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332         0
+06:50:16 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332         0
+06:50:17 PM  14412808  15902184   2012296     12.25    216652   1441560    419328      2.05   1197944    519332         0
+06:50:18 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:19 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:20 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:21 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:22 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:23 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:24 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:25 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:26 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:27 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:28 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:29 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:30 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:31 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:32 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:33 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:34 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:35 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:36 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:37 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:38 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:39 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:40 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:41 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:42 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:43 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:44 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:45 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:46 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:47 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:48 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:49 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:50 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:51 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:52 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:53 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:54 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:55 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:56 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:57 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:58 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:50:59 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:51:00 PM  14412808  15902184   2012296     12.25    216652   1441560    459672      2.25   1198084    519332         0
+06:51:01 PM  14413004  15902380   2012100     12.25    216652   1441560    426492      2.09   1198084    519332         0
+06:51:02 PM  14413056  15902432   2012048     12.25    216652   1441560    426492      2.09   1197912    519332         0
+</pre>
+
+
+
+<h4 class="wp-block-heading">■ Spike動作状況</h4>
+
+
+
+CPU負荷
+<pre>                CPU     %user     %nice   %system   %iowait    %steal     %idle
+06:58:17 PM     all      8.50      0.00      0.17      0.00      0.00     91.33
+06:58:18 PM     all     16.56      0.00      0.00      0.00      0.00     83.44
+06:58:20 PM     all     16.69      0.00      0.00      0.00      0.00     83.31
+06:58:21 PM     all     16.78      0.00      0.00      0.00      0.00     83.22
+06:58:22 PM     all     14.10      0.00      0.17      0.00      0.00     85.74
+06:58:23 PM     all      0.00      0.00      0.00      0.00      0.00    100.00
+</pre>
+
+
+
+メモリ利用状況
+<pre>            kbmemfree   kbavail kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit  kbactive   kbinact   kbdirty
+06:58:16 PM  14417320  15907024   2007784     12.22    216724   1441780    415376      2.03   1195372    518948        20
+06:58:17 PM  14417320  15907024   2007784     12.22    216724   1441780    415376      2.03   1195372    518948        20
+06:58:18 PM  14416064  15905768   2009040     12.23    216724   1441780   2518140     12.31   1196712    518948        20
+06:58:19 PM  14416072  15905776   2009032     12.23    216724   1441780   2518140     12.31   1196712    518948        20
+06:58:20 PM  14416072  15905776   2009032     12.23    216724   1441780   2518140     12.31   1196712    518948        20
+06:58:21 PM  14416072  15905776   2009032     12.23    216724   1441780   2518140     12.31   1196712    518948        20
+06:58:22 PM  14417052  15906756   2008052     12.23    216724   1441780    419560      2.05   1195536    518948        20
+06:58:23 PM  14417052  15906756   2008052     12.23    216724   1441780    419560      2.05   1195536    518948        20
+</pre>
+
+
+
+<p>RISC-V Spikeの方はメモリを起動時に大量に確保して、CPUはあまり使わなくても良い。逆にQuEST単体の方はメモリをあまり利用しないで、CPUを大量に(6vCPU全て)使い切っている。</p>
+
+
+
+<p><br>また、Spikeの方は起動時にエミュレーター上にメモリを確保するため、起動時に2Gbyteのメモリを確保してQuESTの処理が全てオンメモリで動作する。逆にQuEST単体の方は、処理中でも57Kbyte程度のメモリしか確保しないで動作している。つまりメモリについての扱いの差が如実に結果に反映されたと考えられる。</p>
+
+
+
+<p>また結果として、今回実装したRISC-V Spike with QuESTの環境を利用すると、QuESTを利用した量子演算が10倍早く行えるということを意味している(うまく実装できて良かった)。</p>
+
+
+
+<h4 class="wp-block-heading">■ おまけ</h4>
+
+
+
+<p>折角なので手持ちのRISC-V 64bit dual core K210(400-600MHz)を搭載した、Sipeed Maix M1w DockでもQuESTを動作させてパフォーマンスを見ることにした。</p>
+
+
+
+<figure class="wp-block-image"><img fetchpriority="high" decoding="async" width="4160" height="3120" src="/wp-content/uploads/2019/11/IMG_20191125_234542.jpg" alt="" class="wp-image-631"/><figcaption>実機はこんな感じのもの</figcaption></figure>
+
+
+
+<p>ビルドにはPlatformIOを利用して、kendryte210 SDKを使ってビルドをする。<a href="/wp-content/uploads/2019/11/testapp.tar.gz">ソースコードはここにPIOのプロジェクトをtar.gzで固めて置いてある</a>。ソースコードの中身は上記の"QuEST source code."と一緒で動く。<br>実際に1000万回繰り返してみた結果は...7分14秒でした。<br>CNN向けアクセラレータ KPUの方に処理をオフロードしてあげれば、もしかして高速に動作するかもしれない。</p>
+        </div>
+            </div>
+    
+	<nav class="navigation post-navigation" aria-label="投稿">
+		<h2 class="screen-reader-text">投稿ナビゲーション</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="/qlangquantum-language-with-llvm/" rel="prev"><span class="meta-nav" aria-hidden="true">前: </span> <span class="screen-reader-text">前の記事: </span> <span class="post-title">qlang(quantum language) with LLVM</span></a></div><div class="nav-next"><a href="/risc-v-quantum-extension/" rel="next"><span class="meta-nav" aria-hidden="true">次: </span> <span class="screen-reader-text">次の記事: </span> <span class="post-title">RISC-V Quantum Extension</span></a></div></div>
+	</nav>    
+
+<div class="post-comments">
+	 
+  
+</div>
+<!-- /post-comments -->
+
+  <div class="comments-form">
+    <div class="comment-form">
+     		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/risc-v-spike-vs-quest/#respond" style="display:none;">コメントをキャンセル</a></small></h3><form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-notes"><span id="email-notes">メールアドレスが公開されることはありません。</span> <span class="required-field-message"><span class="required">※</span> が付いている欄は必須項目です</span></p><p class="comment-form-comment"><label for="comment">コメント <span class="required">※</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">名前 <span class="required">※</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required="required" /></p>
+<p class="comment-form-email"><label for="email">メール <span class="required">※</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required="required" /></p>
+<p class="comment-form-url"><label for="url">サイト</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200" autocomplete="url" /></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">次回のコメントで使用するためブラウザーに自分の名前、メールアドレス、サイトを保存する。</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="button blue small" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='552' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="10437d4a14" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="188"/></p></form>	</div><!-- #respond -->
+	    </div>
+  </div>
+</div>
+                    </div>
+                </div>
+				        
+<div class="sidebar col-sm-4 col-md-3">
+    <div class="panel bg-color-white">
+        <div id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="/">
+    <label>
+        <span class="screen-reader-text">検索:</span>
+        <input type="search" class="search-field" placeholder="検索&hellip;" value="" name="s"/>
+    </label>
+</form>
+</div>
+		<div id="recent-posts-2" class="widget widget_recent_entries">
+		<h5 class="widgettitle">最近の投稿</h5>
+		<ul>
+											<li>
+					<a href="/handmade_qpu/">見えてきた自作QPU</a>
+									</li>
+											<li>
+					<a href="/openmpw_qpu/">OpenMPWで作るQPUの可能性</a>
+									</li>
+											<li>
+					<a href="/8-bit/">8 bit</a>
+									</li>
+											<li>
+					<a href="/risc-v-rvv-0-8-x-spike-pk/">RISC-V RVV 0.8.x spike/pk add K Extension</a>
+									</li>
+											<li>
+					<a href="/ogaki-mini-maker-faire-2020/">Ogaki Mini Maker Faire 2020</a>
+									</li>
+					</ul>
+
+		</div><div id="recent-comments-2" class="widget widget_recent_comments"><h5 class="widgettitle">最近のコメント</h5><ul id="recentcomments"><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-876">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-867">クラドニ図の作りかた</a> に <span class="comment-author-link">Hirotaka Niisato</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-866">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-864">クラドニ図の作りかた</a> に <span class="comment-author-link">Hirotaka Niisato</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-863">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li></ul></div><div id="archives-2" class="widget widget_archive"><h5 class="widgettitle">アーカイブ</h5>
+			<ul>
+					<li><a href="/2023/12/">2023年12月</a></li>
+	<li><a href="/2022/12/">2022年12月</a></li>
+	<li><a href="/2022/01/">2022年1月</a></li>
+	<li><a href="/2021/01/">2021年1月</a></li>
+	<li><a href="/2020/12/">2020年12月</a></li>
+	<li><a href="/2020/11/">2020年11月</a></li>
+	<li><a href="/2020/06/">2020年6月</a></li>
+	<li><a href="/2020/03/">2020年3月</a></li>
+	<li><a href="/2020/02/">2020年2月</a></li>
+	<li><a href="/2020/01/">2020年1月</a></li>
+	<li><a href="/2019/12/">2019年12月</a></li>
+	<li><a href="/2019/11/">2019年11月</a></li>
+	<li><a href="/2019/10/">2019年10月</a></li>
+	<li><a href="/2019/09/">2019年9月</a></li>
+	<li><a href="/2019/08/">2019年8月</a></li>
+	<li><a href="/2019/07/">2019年7月</a></li>
+			</ul>
+
+			</div><div id="categories-2" class="widget widget_categories"><h5 class="widgettitle">カテゴリー</h5>
+			<ul>
+					<li class="cat-item cat-item-1"><a href="/category/%e6%9c%aa%e5%88%86%e9%a1%9e/">未分類</a>
+</li>
+			</ul>
+
+			</div><div id="meta-2" class="widget widget_meta"><h5 class="widgettitle">メタ情報</h5>
+		<ul>
+						<li><a href="/wp-login.php">ログイン</a></li>
+			<li><a href="/feed/">投稿フィード</a></li>
+			<li><a href="/comments/feed/">コメントフィード</a></li>
+
+			<li><a href="https://ja.wordpress.org/">WordPress.org</a></li>
+		</ul>
+
+		</div>    </div>
+</div>
+            </div>
+        </div>
+    </div>
+	<div  class='footer footer-simple'>
+    <div  class='footer-content center-xs'>
+        <div class="gridContainer">
+	        <div class="row middle-xs footer-content-row">
+	            <div class="footer-content-col col-xs-12">
+	                    <p  class="copyright">&copy;&nbsp;&nbsp;2026&nbsp;SIProp量子化計画.&nbsp;WordPress と<a target="_blank" href="https://extendthemes.com/go/built-with-highlight/" class="mesmerize-theme-link">Highlight Theme</a>を使って構築した</p>	            </div>
+	        </div>
+	    </div>
+    </div>
+</div>
+	</div>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/highlight/*","/wp-content/themes/mesmerize/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript"  defer="defer" src="/wp-includes/js/imagesloaded.min.js?ver=5.0.0" id="imagesloaded-js"></script>
+<script type="text/javascript"  defer="defer" src="/wp-includes/js/masonry.min.js?ver=4.2.2" id="masonry-js"></script>
+<script type="text/javascript"  defer="defer" src="/wp-content/themes/mesmerize/assets/js/theme.bundle.min.js?ver=1.0.13" id="mesmerize-theme-js"></script>
+<script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=6.9.4" id="comment-reply-js" async="async" data-wp-strategy="async" fetchpriority="low"></script>
+<script type="text/javascript" src="/wp-content/themes/highlight/assets/js/theme-child.js" id="theme-child-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.6" id="akismet-form-js"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://quantum.siprop.org/wp-includes/js/wp-emoji-release.min.js?ver=6.9.4"}}
+</script>
+<script type="module">
+/* <![CDATA[ */
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://quantum.siprop.org/wp-includes/js/wp-emoji-loader.min.js
+/* ]]> */
+</script>
+</body>
+</html>

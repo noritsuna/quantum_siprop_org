@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Mon, 20 Apr 2026 21:18:08 GMT">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+	    <script>
+        (function (exports, d) {
+            var _isReady = false,
+                _event,
+                _fns = [];
+
+            function onReady(event) {
+                d.removeEventListener("DOMContentLoaded", onReady);
+                _isReady = true;
+                _event = event;
+                _fns.forEach(function (_fn) {
+                    var fn = _fn[0],
+                        context = _fn[1];
+                    fn.call(context || exports, window.jQuery);
+                });
+            }
+
+            function onReadyIe(event) {
+                if (d.readyState === "complete") {
+                    d.detachEvent("onreadystatechange", onReadyIe);
+                    _isReady = true;
+                    _event = event;
+                    _fns.forEach(function (_fn) {
+                        var fn = _fn[0],
+                            context = _fn[1];
+                        fn.call(context || exports, event);
+                    });
+                }
+            }
+
+            d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+            d.attachEvent && d.attachEvent("onreadystatechange", onReadyIe);
+
+            function domReady(fn, context) {
+                if (_isReady) {
+                    fn.call(context, _event);
+                }
+
+                _fns.push([fn, context]);
+            }
+
+            exports.mesmerizeDomReady = domReady;
+        })(window, document);
+    </script>
+    <title>クラドニ図の作りかた | SIProp量子化計画</title>
+<meta name='robots' content='max-image-preview:large' />
+
+<!-- All In One SEO Pack 3.7.1ob_start_detected [-1,-1] -->
+<script type="application/ld+json" class="aioseop-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://quantum.siprop.org/#organization","url":"https://quantum.siprop.org/","name":"SIProp量子化計画","sameAs":[]},{"@type":"WebSite","@id":"https://quantum.siprop.org/#website","url":"https://quantum.siprop.org/","name":"SIProp量子化計画","publisher":{"@id":"https://quantum.siprop.org/#organization"}},{"@type":"WebPage","@id":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#webpage","url":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/","inLanguage":"ja","name":"クラドニ図の作りかた","isPartOf":{"@id":"https://quantum.siprop.org/#website"},"breadcrumb":{"@id":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#breadcrumblist"},"datePublished":"2020-11-05T10:16:00+09:00","dateModified":"2022-02-16T10:54:52+09:00"},{"@type":"Article","@id":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#article","isPartOf":{"@id":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#webpage"},"author":{"@id":"https://quantum.siprop.org/author/niisato/#author"},"headline":"クラドニ図の作りかた","datePublished":"2020-11-05T10:16:00+09:00","dateModified":"2022-02-16T10:54:52+09:00","commentCount":12,"mainEntityOfPage":{"@id":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#webpage"},"publisher":{"@id":"https://quantum.siprop.org/#organization"},"articleSection":"未分類","image":{"@type":"ImageObject","@id":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#primaryimage","url":"https://quantum.siprop.org/wp-content/uploads/2020/11/IMG_4899.jpg"}},{"@type":"Person","@id":"https://quantum.siprop.org/author/niisato/#author","name":"HirotakaNiisato","sameAs":[],"image":{"@type":"ImageObject","@id":"https://quantum.siprop.org/#personlogo","url":"https://secure.gravatar.com/avatar/2b5721bee955f54261390d01588d5a533bad37d7a7dfd39b957f0f235d5110d6?s=96&d=mm&r=g","width":96,"height":96,"caption":"HirotakaNiisato"}},{"@type":"BreadcrumbList","@id":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#breadcrumblist","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://quantum.siprop.org/","url":"https://quantum.siprop.org/","name":"SIProp量子化計画"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/","url":"https://quantum.siprop.org/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/","name":"クラドニ図の作りかた"}}]}]}</script>
+<link rel="canonical" href="https://quantum.siprop.org/クラドニ図の作りかた/" />
+<!-- All In One SEO Pack -->
+<link rel='dns-prefetch' href="//fonts.googleapis.com" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fquantum.siprop.org%2F%25e3%2582%25af%25e3%2583%25a9%25e3%2583%2589%25e3%2583%258b%25e5%259b%25b3%25e3%2581%25ae%25e4%25bd%259c%25e3%2582%258a%25e3%2581%258b%25e3%2581%259f%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fquantum.siprop.org%2F%25e3%2582%25af%25e3%2583%25a9%25e3%2583%2589%25e3%2583%258b%25e5%259b%25b3%25e3%2581%25ae%25e4%25bd%259c%25e3%2582%258a%25e3%2581%258b%25e3%2581%259f%2F&#038;format=xml" />
+<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id='wp-block-library-inline-css' type='text/css'>
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}.has-text-align-center{text-align:center}.has-text-align-left{text-align:left}.has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=wp-block-library-inline-css */
+</style>
+<style id='wp-block-heading-inline-css' type='text/css'>
+h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:1.25em 2.375em}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/heading/style.min.css */
+</style>
+<style id='wp-block-image-inline-css' type='text/css'>
+.wp-block-image>a,.wp-block-image>figure>a{display:inline-block}.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}@media not (prefers-reduced-motion){.wp-block-image img.hide{visibility:hidden}.wp-block-image img.show{animation:show-content-image .4s}}.wp-block-image[style*=border-radius] img,.wp-block-image[style*=border-radius]>a{border-radius:inherit}.wp-block-image.has-custom-border img{box-sizing:border-box}.wp-block-image.aligncenter{text-align:center}.wp-block-image.alignfull>a,.wp-block-image.alignwide>a{width:100%}.wp-block-image.alignfull img,.wp-block-image.alignwide img{height:auto;width:100%}.wp-block-image .aligncenter,.wp-block-image .alignleft,.wp-block-image .alignright,.wp-block-image.aligncenter,.wp-block-image.alignleft,.wp-block-image.alignright{display:table}.wp-block-image .aligncenter>figcaption,.wp-block-image .alignleft>figcaption,.wp-block-image .alignright>figcaption,.wp-block-image.aligncenter>figcaption,.wp-block-image.alignleft>figcaption,.wp-block-image.alignright>figcaption{caption-side:bottom;display:table-caption}.wp-block-image .alignleft{float:left;margin:.5em 1em .5em 0}.wp-block-image .alignright{float:right;margin:.5em 0 .5em 1em}.wp-block-image .aligncenter{margin-left:auto;margin-right:auto}.wp-block-image :where(figcaption){margin-bottom:1em;margin-top:.5em}.wp-block-image.is-style-circle-mask img{border-radius:9999px}@supports ((-webkit-mask-image:none) or (mask-image:none)) or (-webkit-mask-image:none){.wp-block-image.is-style-circle-mask img{border-radius:0;-webkit-mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-mode:alpha;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}}:root :where(.wp-block-image.is-style-rounded img,.wp-block-image .is-style-rounded img){border-radius:9999px}.wp-block-image figure{margin:0}.wp-lightbox-container{display:flex;flex-direction:column;position:relative}.wp-lightbox-container img{cursor:zoom-in}.wp-lightbox-container img:hover+button{opacity:1}.wp-lightbox-container button{align-items:center;backdrop-filter:blur(16px) saturate(180%);background-color:#5a5a5a40;border:none;border-radius:4px;cursor:zoom-in;display:flex;height:20px;justify-content:center;opacity:0;padding:0;position:absolute;right:16px;text-align:center;top:16px;width:20px;z-index:100}@media not (prefers-reduced-motion){.wp-lightbox-container button{transition:opacity .2s ease}}.wp-lightbox-container button:focus-visible{outline:3px auto #5a5a5a40;outline:3px auto -webkit-focus-ring-color;outline-offset:3px}.wp-lightbox-container button:hover{cursor:pointer;opacity:1}.wp-lightbox-container button:focus{opacity:1}.wp-lightbox-container button:focus,.wp-lightbox-container button:hover,.wp-lightbox-container button:not(:hover):not(:active):not(.has-background){background-color:#5a5a5a40;border:none}.wp-lightbox-overlay{box-sizing:border-box;cursor:zoom-out;height:100vh;left:0;overflow:hidden;position:fixed;top:0;visibility:hidden;width:100%;z-index:100000}.wp-lightbox-overlay .close-button{align-items:center;cursor:pointer;display:flex;justify-content:center;min-height:40px;min-width:40px;padding:0;position:absolute;right:calc(env(safe-area-inset-right) + 16px);top:calc(env(safe-area-inset-top) + 16px);z-index:5000000}.wp-lightbox-overlay .close-button:focus,.wp-lightbox-overlay .close-button:hover,.wp-lightbox-overlay .close-button:not(:hover):not(:active):not(.has-background){background:none;border:none}.wp-lightbox-overlay .lightbox-image-container{height:var(--wp--lightbox-container-height);left:50%;overflow:hidden;position:absolute;top:50%;transform:translate(-50%,-50%);transform-origin:top left;width:var(--wp--lightbox-container-width);z-index:9999999999}.wp-lightbox-overlay .wp-block-image{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:center;margin:0;position:relative;transform-origin:0 0;width:100%;z-index:3000000}.wp-lightbox-overlay .wp-block-image img{height:var(--wp--lightbox-image-height);min-height:var(--wp--lightbox-image-height);min-width:var(--wp--lightbox-image-width);width:var(--wp--lightbox-image-width)}.wp-lightbox-overlay .wp-block-image figcaption{display:none}.wp-lightbox-overlay button{background:none;border:none}.wp-lightbox-overlay .scrim{background-color:#fff;height:100%;opacity:.9;position:absolute;width:100%;z-index:2000000}.wp-lightbox-overlay.active{visibility:visible}@media not (prefers-reduced-motion){.wp-lightbox-overlay.active{animation:turn-on-visibility .25s both}.wp-lightbox-overlay.active img{animation:turn-on-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active){animation:turn-off-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active) img{animation:turn-off-visibility .25s both}.wp-lightbox-overlay.zoom.active{animation:none;opacity:1;visibility:visible}.wp-lightbox-overlay.zoom.active .lightbox-image-container{animation:lightbox-zoom-in .4s}.wp-lightbox-overlay.zoom.active .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.active .scrim{animation:turn-on-visibility .4s forwards}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active){animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container{animation:lightbox-zoom-out .4s}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .scrim{animation:turn-off-visibility .4s forwards}}@keyframes show-content-image{0%{visibility:hidden}99%{visibility:hidden}to{visibility:visible}}@keyframes turn-on-visibility{0%{opacity:0}to{opacity:1}}@keyframes turn-off-visibility{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible}to{opacity:0;visibility:hidden}}@keyframes lightbox-zoom-in{0%{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale))}to{transform:translate(-50%,-50%) scale(1)}}@keyframes lightbox-zoom-out{0%{transform:translate(-50%,-50%) scale(1);visibility:visible}99%{visibility:visible}to{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale));visibility:hidden}}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/image/style.min.css */
+</style>
+<style id='wp-block-paragraph-inline-css' type='text/css'>
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://quantum.siprop.org/wp-includes/blocks/paragraph/style.min.css */
+</style>
+
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='mesmerize-parent-css' href="/wp-content/themes/mesmerize/style.min.css?ver=6.9.4" type='text/css' media='all' />
+<link rel='stylesheet' id='mesmerize-style-css' href="/wp-content/themes/highlight/style.min.css?ver=1.0.13" type='text/css' media='all' />
+<style id='mesmerize-style-inline-css' type='text/css'>
+img.logo.dark, img.custom-logo{width:auto;max-height:70px !important;}
+/** cached kirki style */@media screen and (min-width: 768px){.header{background-position:center center;}}.header-homepage:not(.header-slide).color-overlay:before{background:#000000;}.header-homepage:not(.header-slide) .background-overlay,.header-homepage:not(.header-slide).color-overlay::before{opacity:0.7;}.header-homepage-arrow{font-size:calc( 50px * 0.84 );bottom:20px;background:rgba(255,255,255,0);}.header-homepage-arrow > i.fa{width:50px;height:50px;}.header-homepage-arrow > i{color:#ffffff;}.header-homepage .header-description-row{padding-top:30%;padding-bottom:0%;}.inner-header-description{padding-top:8%;padding-bottom:8%;}@media screen and (max-width:767px){.header-homepage .header-description-row{padding-top:15%;padding-bottom:15%;}}@media only screen and (min-width: 768px){.header-content .align-holder{width:80%!important;}.inner-header-description{text-align:center!important;}}
+/*# sourceURL=mesmerize-style-inline-css */
+</style>
+<link rel='stylesheet' id='mesmerize-style-bundle-css' href="/wp-content/themes/mesmerize/assets/css/theme.bundle.min.css?ver=1.0.13" type='text/css' media='all' />
+<link rel='stylesheet' id='mesmerize-fonts-css'  data-href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic%7CPlayfair+Display%3A400%2C400italic%2C700%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" id="jquery-core-js-after">
+/* <![CDATA[ */
+    
+        (function () {
+            function setHeaderTopSpacing() {
+
+                setTimeout(function() {
+                  var headerTop = document.querySelector('.header-top');
+                  var headers = document.querySelectorAll('.header-wrapper .header,.header-wrapper .header-homepage');
+
+                  for (var i = 0; i < headers.length; i++) {
+                      var item = headers[i];
+                      item.style.paddingTop = headerTop.getBoundingClientRect().height + "px";
+                  }
+
+                    var languageSwitcher = document.querySelector('.mesmerize-language-switcher');
+
+                    if(languageSwitcher){
+                        languageSwitcher.style.top = "calc( " +  headerTop.getBoundingClientRect().height + "px + 1rem)" ;
+                    }
+                    
+                }, 100);
+
+             
+            }
+
+            window.addEventListener('resize', setHeaderTopSpacing);
+            window.mesmerizeSetHeaderTopSpacing = setHeaderTopSpacing
+            mesmerizeDomReady(setHeaderTopSpacing);
+        })();
+    
+    
+//# sourceURL=jquery-core-js-after
+/* ]]> */
+</script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/posts/1443" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.9.4 with StaticPress ver.0.4.5" />
+        <style data-name="header-gradient-overlay">
+            .header .background-overlay {
+                background: linear-gradient(135deg , rgba(102,126,234, 0.8) 0%, rgba(118,75,162,0.8) 100%);
+            }
+        </style>
+        <script type="text/javascript" data-name="async-styles">
+        (function () {
+            var links = document.querySelectorAll('link[data-href]');
+            for (var i = 0; i < links.length; i++) {
+                var item = links[i];
+                item.href = item.getAttribute('data-href')
+            }
+        })();
+    </script>
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>    <style id="page-content-custom-styles">
+            </style>
+        <style data-name="background-content-colors">
+        .mesmerize-inner-page .page-content,
+        .mesmerize-inner-page .content,
+        .mesmerize-front-page.mesmerize-content-padding .page-content {
+            background-color: #ffffff;
+        }
+    </style>
+    </head>
+
+<body class="wp-singular post-template-default single single-post postid-1443 single-format-standard wp-theme-mesmerize wp-child-theme-highlight mesmerize-inner-page">
+
+<div  id="page-top" class="header-top">
+		<div class="navigation-bar logo-above-menu "  data-sticky='0'  data-sticky-mobile='1'  data-sticky-to='top' >
+    <div class="navigation-wrapper ">
+        <div class="row basis-auto between-xs">
+	        <div class="logo_col col-xs col-sm-12 center-sm">
+	            <a class="text-logo" data-type="group"  data-dynamic-mod="true" href="/">SIProp量子化計画</a>	        </div>
+	        <div class="main_menu_col col-xs-fit col-sm">
+	            <div id="mainmenu_container" class="row"><ul id="main_menu" class="active-line-bottom main-menu dropdown-menu"><li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-21"><a href="/blog/">Blog</a></li>
+</ul></div>    <a href="#" data-component="offcanvas" data-target="#offcanvas-wrapper" data-direction="right" data-width="300px" data-push="false">
+        <div class="bubble"></div>
+        <i class="fa fa-bars"></i>
+    </a>
+    <div id="offcanvas-wrapper" class="hide force-hide  offcanvas-right">
+        <div class="offcanvas-top">
+            <div class="logo-holder">
+                <a class="text-logo" data-type="group"  data-dynamic-mod="true" href="/">SIProp量子化計画</a>            </div>
+        </div>
+        <div id="offcanvas-menu" class="menu-menu-1-container"><ul id="offcanvas_menu" class="offcanvas_menu"><li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-21"><a href="/blog/">Blog</a></li>
+</ul></div>
+            </div>
+    	        </div>
+	    </div>
+    </div>
+</div>
+</div>
+
+<div id="page" class="site">
+    <div class="header-wrapper">
+        <div  class='header  color-overlay  custom-mobile-image' style='; background-image:url(&quot;https://quantum.siprop.org/wp-content/themes/highlight/assets/images/hero-inner.jpg&quot;); background-color:#6a73da' data-parallax-depth='20'>
+            <div class="background-overlay"></div>								    <div class="inner-header-description gridContainer">
+        <div class="row header-description-row">
+    <div class="col-xs col-xs-12">
+        <h1 class="hero-title">
+            クラドニ図の作りかた        </h1>
+                    <p class="header-subtitle">quantum computing</p>
+            </div>
+        </div>
+    </div>
+        <script>
+        window.mesmerizeSetHeaderTopSpacing();
+    </script>
+                        </div>
+    </div>
+    <div class="content post-page">
+        <div class="gridContainer">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-9">
+          					<div class="post-item post-item-single">
+          						<div id="post-1443"class="post-1443 post type-post status-publish format-standard hentry category-1">
+    <div class="post-content-single">
+        <h2>クラドニ図の作りかた</h2>
+        <div class="row post-meta small">
+    <div class="col-md-10 col-xs-9">
+        <ul class="is-bar">
+            <li>投稿者: <a href="/author/niisato/" title="HirotakaNiisato の投稿" rel="author">HirotakaNiisato</a></li>
+            <li>に <a href="/category/%e6%9c%aa%e5%88%86%e9%a1%9e/" rel="category tag">未分類</a></li>
+            <li>投稿日: 2020-11-05</li>
+        </ul>
+    </div>
+    <div class="col-md-2 col-xs-3 text-right">
+        <i class="font-icon-post fa fa-comment-o"></i><span>12</span>
+    </div>
+</div>
+        <div class="post-content-inner">
+            
+<p><a href="/8-bit/">ここで作った</a>クラドニ図用の作り方を残しておく。</p>
+
+
+
+<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<div class='embed-container'><iframe title="8 bit" width="1920" height="1080" src="https://www.youtube.com/embed/3aaRVPBKYBg?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+</div></figure>
+
+
+
+<p>Googleで「クラドニ図 スピーカ」で検索するとちゃんとした市販品から、自作している物まで色々と出てくる。市販品になると<a href="https://www.arborsci.com/products/mechanical-wave-valuepack">3-4万円/個くらいの物</a>があった。さすがにちょっとお高いので、サクッと簡単に出来る方法は調べたりした。中でも一番簡単に出来るのはこれだと思う。</p>
+
+
+
+<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-4-3 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<div class='embed-container'><iframe title="Plaque de Chladni et voix" width="1440" height="1080" src="https://www.youtube.com/embed/4cQ_HtcJECs?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+</div></figure>
+
+
+
+<p>適当なプラケースとかの上に粒子(砂・塩・砂糖)を撒いて、声を出すだけ。これだけで紋様が浮かび上がる。<br><br>ちなみに、600年前の教会の壁からも同じような図が出てきている <a href="https://www.mentalfloss.com/article/16273/600-year-old-music-found-encoded-chapel-walls">600-Year-Old Music Found Encoded in Chapel Walls</a> 。この時代はまだ共振によって不思議な紋様が出てくるとは分かっていないと思うけど、経験的に賛美歌や教会から奏でられる音色から出てくる紋様を記録していたというのも想像に難くない。<br>また最近でもクラドニ図を使った研究も結構あったりで、自分的に面白いと思ったのがnatureからのこちら <a href="https://www.nature.com/articles/ncomms12764">Controlling the motion of multiple objects on a Chladni plate</a> 。といった感じでクラドニ図を使った物は古くから現在まで沢山ある。<br>以下では、自分の作った方法を載せておく。</p>
+
+
+
+<h4 class="wp-block-heading">■ 完成形</h4>
+
+
+
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3903.jpg" alt="" class="wp-image-1457"/></figure>
+
+
+
+<p></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4608.jpg" alt="" class="wp-image-1458"/></figure>
+
+
+
+<p>鉄板については四角形・円形どちらでも大丈夫。好きな形を選べばよい。自分は直径180mmの円形、180x180mm 正方形・0.5mmの鉄板を利用している。</p>
+
+
+
+<h4 class="wp-block-heading">■ 部材</h4>
+
+
+
+<p>・10cm フルレンジスピーカ x 1<br>・3Dモデル : <a href="/wp-content/uploads/2020/10/3dmodel.zip">ここからダウンロード</a>  base.stl, top.stl, cone.stl の３種類<br>・八幡長ネジ 150mm M5 x 4<br>・M5 80mm なべ小ネジ x 1<br>・M5 ナット・ワッシャ x 24<br>・エーモン平型端子スピーカー用 S・Mセット x 1<br>・鉄板（中心にM5用の穴） x 1<br>・白砂（ダイソーとかに売っている）</p>
+
+
+
+<h4 class="wp-block-heading">■ 作り方</h4>
+
+
+
+<p>まずは３Dプリンタでbase.stl、top.stl、cone.stl を出力する。3Dモデルをダウンロードして展開すると、それぞれ&#8230;<br><br>base.stl : 土台（下の円形のもの）<br>top.stl : 支持（上の円形のもの）<br>cone.stl : スピーカと鉄板の支持<br><br>という役割がある。シンプルな形状でFusion360でサクッと作っている。スピーカのサイズに合わせてSTLを修正して使ってもOKっすね。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3746.jpg" alt="" class="wp-image-1490"/></figure>
+
+
+
+<p>次にスピーカを加工する。スピーカのセンターキャップ部分を残してカッターでコーンを切り取る。やってみれば分かるけど、結構綺麗にコーンは除去できる。<br>そしてセンターキャップに出力した3Dモデル cone.stl を&#8221;M5 80mm なべ小ネジ&#8221;を通してから接着剤で完全に固定する。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4185.jpg" alt="" class="wp-image-1495"/></figure>
+
+
+
+<p>あとはとても簡単。base.stl で出力した土台に&#8221;八幡長ネジ 150mm M5&#8243;を通して支持（ top.stl ）にM5ナット＆ワッシャーで固定してガワが完成する。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4245.jpg" alt="" class="wp-image-1500"/></figure>
+
+
+
+<p>最後に支柱付きのスピーカーをさっき通した&#8221;八幡長ネジ 150mm M5&#8243;にM5ナット・ワッシャーで固定すれば完成になる。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4247.jpg" alt="" class="wp-image-1524"/></figure>
+
+
+
+<p>スピーカーには&#8221;エーモン平型端子スピーカー用&#8221;のS/M端子をカシメて接合して完成になる。端子を音源につなげるとボイスコイルが動いて音として支軸を通して伝わっていくという流れになる。</p>
+
+
+
+<p>鉄板をセンターキャップからの支柱につなげて、砂を落として音出しすると図が出てくる。<br>ここで、鉄板が水平にならないと、砂が一方向に落ちていってしまう。対策として、スピーカ部は&#8221;八幡長ネジ 150mm M5&#8243;x4本で支えているから、水平になるようにネジを調整すればわりと簡単に水平を取れるようになっている。なので、設置したところが水平でなくても、ある程度の誤差は吸収できるような構造にしている。</p>
+
+
+
+<h4 class="wp-block-heading">■ 鉄板</h4>
+
+
+
+<p>自分は鉄板を使ったけど、スピーカ部が出来れば鉄板以外の物でも接合できる。なぜ鉄板を使ったか？というと、出来るだけ音の振動を伝えやすい素材を使った方が良いだろう(<a href="https://www.valtech.to/photo/36112/music.htm">参考</a>)ということからだった。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3771.jpg" alt="" class="wp-image-1516"/></figure>
+
+
+
+<p>一応、色々な厚さ・サイズ・素材で切り出してテストを行って、180x180mmが扱いやすいということに落ち着いた。鉄板は簡易な入手性も考えて、東急ハンズで0.5mm鉄板を入手・カットして使っている。</p>
+
+
+
+<h4 class="wp-block-heading">■ スピーカー</h4>
+
+
+
+<p>スピーカーは全てハードオフ・ヤフオクで入手したジャンク・スピーカを利用している。スピーカ1個で新品 2000円〜くらいするスペックの物が欲しかったのもあるけど、量を揃えるとなるとコストに直結する。10個作ろうとすると予備も合わせて2〜3万円はかかってしまう。<br>そこで、動作未確認のジャンク・スピーカをゲットして利用することにした。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3656.jpg" alt="" class="wp-image-1521"/></figure>
+
+
+
+<p>価格帯は1円〜500円程度(もちろんスピーカなので2台で)。コンポと一緒に付いてくるスピーカがほとんどで、本体のアンプが壊れてスピーカだけ出ているケースが多かった。だから何気にスピーカ自体はそのまま使える。24本ほどジャンク・スピーカを入手したけど、鳴らないものは一つもなかった。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4189.jpg" alt="" class="wp-image-1520"/></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4195.jpg" alt="" class="wp-image-1523"/></figure>
+
+
+
+<p>スピーカ本体からバラすのは再利用として環境に優しい。ただ、エンクロージャー(木材)が大量に積まれていくことになった。</p>
+
+
+
+<p>スピーカ自体は何を使っても良いけど、コーンに電極が接合されている物は避けることにした。コーンが付いていると音が凄く鳴るので、クラドニ図をだけを出す場合にはマッチしない。そこでコーンを切り取るわけだけど、そのときコーンに電極が付いているとボイスコイルまで電極を辿ることなる。とても切れやすい銅線をうまく引き剥がすのは（何個かスピーカを犠牲にしてやってみたものの）うまく出来なかった。そこでコーンに電極がないスピーカのみを使うことにした。というのもあって、大量の不採用スピーカも出てくることになった。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_3605.jpg" alt="" class="wp-image-1557"/></figure>
+
+
+
+<h4 class="wp-block-heading">■その他</h4>
+
+
+
+<p>出来た物をそのままPCとかのジャックからの出力を使ってもパワーが足りなくて図が出てこないはず。そこでパワーアンプの出番になる。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4562.jpg" alt="" class="wp-image-1569"/></figure>
+
+
+
+<p>ここではRPi4x16台を使った電波送受信からダウンコンバートして、アンプ経由で図を出している。ここで使っている<a href="https://www.amazon.co.jp/dp/B07D4HSXCG/">アンプはこちら</a>。価格もお手頃で出力もあって良い感じ。</p>
+
+
+
+<p></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_20200905_165718.jpg" alt="" class="wp-image-1587"/></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/10/IMG_4602.jpg" alt="" class="wp-image-1585"/></figure>
+
+
+
+<p>これだけの量を電波側の周波数を変えながらテストしていくとなると1-2時間はかかってしまう。鉄板の気温変化による伸縮が効いて、環境変化に合わせて再調整を行うのが、台数も多くて大変な作業の一つにもなった。<br></p>
+
+
+
+<p>最後に&#8230;</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="768" src="/wp-content/uploads/2020/11/IMG_4899.jpg" alt="" class="wp-image-1609"/></figure>
+
+
+
+<p>予備部材も使って全部で12個作ってタワーみたいに並べてみた。</p>
+        </div>
+            </div>
+    
+	<nav class="navigation post-navigation" aria-label="投稿">
+		<h2 class="screen-reader-text">投稿ナビゲーション</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="/qutip_jupyter_lab_vscode/" rel="prev"><span class="meta-nav" aria-hidden="true">前: </span> <span class="screen-reader-text">前の記事: </span> <span class="post-title">qutipの環境(jupyter lab/vscode)</span></a></div><div class="nav-next"><a href="/ogaki-mini-maker-faire-2020/" rel="next"><span class="meta-nav" aria-hidden="true">次: </span> <span class="screen-reader-text">次の記事: </span> <span class="post-title">Ogaki Mini Maker Faire 2020</span></a></div></div>
+	</nav>    
+
+<div class="post-comments">
+	    <h3 class="comments-title">
+    	<span class="comments-number">
+				12件の返信    	</span>
+    </h3>
+
+  	<ol class="comment-list">
+      		<li class="pingback even thread-even depth-1" id="comment-47">
+				<div id="div-comment-47" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href="https://makezine.jp/blog/2020/11/mft2020_8bit-quntum-computer.html" class="url" rel="ugc external nofollow">Make: Japan | 「Maker Faire Tokyo 2020」レポート #5 — 量子ビットの操作を可視化した「8bit Quantum Computer」</a></cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-47">2020-11-10 10:23</a>		</div>
+
+		<p>[&#8230;] ちなみに、このクラドニ図形は家庭でも簡単にできるという。ポリバケツの上にラップを貼って、「アー」と叫ぶ。それだけでも、運がいいと図が出ることもある。この装置に関して、新里さんが作り方をブログで公開している（クラドニ図の作りかた|SIPROP量子化計画）。 [&#8230;]</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=47#respond" data-commentid="47" data-postid="1443" data-belowelement="div-comment-47" data-respondelement="respond" data-replyto="Make: Japan | 「Maker Faire Tokyo 2020」レポート #5 — 量子ビットの操作を可視化した「8bit Quantum Computer」 に返信" aria-label="Make: Japan | 「Maker Faire Tokyo 2020」レポート #5 — 量子ビットの操作を可視化した「8bit Quantum Computer」 に返信">返信</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-233">
+				<div id="div-comment-233" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/6f12793e2b4436673e44767c8145a2c068082ec8ff2b1fa4a9b23c4dfe7f64ed?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6f12793e2b4436673e44767c8145a2c068082ec8ff2b1fa4a9b23c4dfe7f64ed?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">ゆうや</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-233">2022-02-15 16:22</a>		</div>
+
+		<p>初めてブログを拝見させて頂きました。<br />
+グラドニ図形にとても興味があり自分でもやってみたかったのですが、装置がなかなか一般販売されておらず諦めていたところ、こちらの記事に出会えました。<br />
+画像にもPCが見えているのですが、音の入力元はPCから好きなので音源が流せるようになっているのでしょうか？</p>
+<p>お手隙の際にお返事頂けましたら幸いです。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=233#respond" data-commentid="233" data-postid="1443" data-belowelement="div-comment-233" data-respondelement="respond" data-replyto="ゆうや に返信" aria-label="ゆうや に返信">返信</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-niisato bypostauthor even depth-2 parent" id="comment-234">
+				<div id="div-comment-234" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/2b5721bee955f54261390d01588d5a533bad37d7a7dfd39b957f0f235d5110d6?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/2b5721bee955f54261390d01588d5a533bad37d7a7dfd39b957f0f235d5110d6?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">HirotakaNiisato</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-234">2022-02-15 16:53</a>		</div>
+
+		<p>普通のPC(Windows/Mac&#8230;etc)から出力する場合、ここで作ったスピーカにそのまま流しても音の出力が弱くて図形として出てくるか微妙なので、パワーアンプを使って出力させています。<br />
+ここでは、これと同じようなパワーアンプを使っています => <a href="https://www.amazon.co.jp/dp/B07D4HSXCG/" rel="nofollow ugc">https://www.amazon.co.jp/dp/B07D4HSXCG/</a><br />
+例えば、&#8221;PC(好きな音源) => PCの出力ジャック => パワーアンプ => クラドニ図(スピーカ) &#8221; といった構成ですね。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=234#respond" data-commentid="234" data-postid="1443" data-belowelement="div-comment-234" data-respondelement="respond" data-replyto="HirotakaNiisato に返信" aria-label="HirotakaNiisato に返信">返信</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 parent" id="comment-370">
+				<div id="div-comment-370" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/ea96b42d2399ec21dac70d53d447622e2063bb043ebc3489c964af686bde0628?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/ea96b42d2399ec21dac70d53d447622e2063bb043ebc3489c964af686bde0628?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">SFAB</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-370">2023-04-06 17:45</a>		</div>
+
+		<p>興味深い記事ありがとうございます。以前からクラドニ図に興味があったので大変助かります。</p>
+<p>自分でもパーツを集めて作成中なのですが、10cmスピーカーのセンターキャップが、3Dデータのパーツにハマるものが中々見つかりません。この場合、3Dデータをセンターキャップに合わせて、変更するしかないでしょうか？</p>
+<p>ご返信いただけましたら幸いです。</p>
+<p>よろしくお願い申し上げます。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=370#respond" data-commentid="370" data-postid="1443" data-belowelement="div-comment-370" data-respondelement="respond" data-replyto="SFAB に返信" aria-label="SFAB に返信">返信</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4" id="comment-371">
+				<div id="div-comment-371" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/4aa15046e500f9118c6491f74b109531e73b6a308a3440227ec2fa5c20e5bf3f?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4aa15046e500f9118c6491f74b109531e73b6a308a3440227ec2fa5c20e5bf3f?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">HirotakaNiisato</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-371">2023-04-06 20:31</a>		</div>
+
+		<p>そうですね&#8230;キャップに合わせる部分がポイントにはなるので、キャップ部分をスピーカーのコーンのサイズに合わせた修正モデルを適当に作ってあげるのが良いと思います。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=371#respond" data-commentid="371" data-postid="1443" data-belowelement="div-comment-371" data-respondelement="respond" data-replyto="HirotakaNiisato に返信" aria-label="HirotakaNiisato に返信">返信</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-369">
+				<div id="div-comment-369" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/ea96b42d2399ec21dac70d53d447622e2063bb043ebc3489c964af686bde0628?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/ea96b42d2399ec21dac70d53d447622e2063bb043ebc3489c964af686bde0628?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">gron</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-369">2023-04-05 19:04</a>		</div>
+
+		<p>とても興味深い記事ありがとうございます。</p>
+<p>自分でもパーツを集め現在製作中なのですが、質問があります。</p>
+<p>「スピーカーセンターキャップに出力した3Dモデル cone.stl を”M5 80mm なべ小ネジ”を通してから接着剤で完全に固定する。」とのことですが、センターキャップに対し3Dモデルが小さく、ハマらずに困っております。<br />
+こちらは本来であればスッポリとハマるものでなければならないのでしょうか？</p>
+<p>ご返信いただけますと幸いです。何卒よろしくお願い申し上げます。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=369#respond" data-commentid="369" data-postid="1443" data-belowelement="div-comment-369" data-respondelement="respond" data-replyto="gron に返信" aria-label="gron に返信">返信</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2" id="comment-373">
+				<div id="div-comment-373" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/4aa15046e500f9118c6491f74b109531e73b6a308a3440227ec2fa5c20e5bf3f?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4aa15046e500f9118c6491f74b109531e73b6a308a3440227ec2fa5c20e5bf3f?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">Hirotaka Niisato</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-373">2023-04-12 12:17</a>		</div>
+
+		<p>すっぽり入る方が&#8221;力(振動)&#8221;を伝える意味でも良いとは思います。<br />
+ただ、綺麗に入らない場合は致し方ないかなと。<br />
+３Dモデルを少し修正＆プリントを試行してジャストサイズになるようにするのは、わりと時間も確かにかかるといえばそうなので。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=373#respond" data-commentid="373" data-postid="1443" data-belowelement="div-comment-373" data-respondelement="respond" data-replyto="Hirotaka Niisato に返信" aria-label="Hirotaka Niisato に返信">返信</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-863">
+				<div id="div-comment-863" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/d44f4d936480731796aba13816a538e12f4183e2ae3946fff82514f1d00feafc?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/d44f4d936480731796aba13816a538e12f4183e2ae3946fff82514f1d00feafc?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">glon</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-863">2023-08-25 14:38</a>		</div>
+
+		<p>とても興味深い記事ありがとうございます。</p>
+<p>自分でもパーツを集め現在製作中なのですが、質問があります。</p>
+<p>「スピーカーセンターキャップに出力した3Dモデル cone.stl を”M5 80mm なべ小ネジ”を通してから接着剤で完全に固定する。」とのことですが、こちら接着剤はどのようなものを使われておりますでしょうか？</p>
+<p>なるべく振動を吸収しない接着剤のほうが良いのかと思うのですが、<br />
+アロンアルファのような瞬間接着剤でも大丈夫でしょうか。</p>
+<p>また、接着面は3dプリントしたcone.stlの外周、淵部分の底面のみという理解でよろしいでしょうか。</p>
+<p>ご返信いただけますと幸いです。何卒よろしくお願い申し上げます。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=863#respond" data-commentid="863" data-postid="1443" data-belowelement="div-comment-863" data-respondelement="respond" data-replyto="glon に返信" aria-label="glon に返信">返信</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2" id="comment-864">
+				<div id="div-comment-864" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/4aa15046e500f9118c6491f74b109531e73b6a308a3440227ec2fa5c20e5bf3f?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4aa15046e500f9118c6491f74b109531e73b6a308a3440227ec2fa5c20e5bf3f?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">Hirotaka Niisato</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-864">2023-08-25 15:46</a>		</div>
+
+		<p>思いっきりアロンアルファを使っています。<br />
+接着面はその通りです、外周の淵部分の底面ですね。<br />
+最初に作ったとき、見事にミスったのですが、小ねじを通す前に接着してしまって（振動を鉄板に伝えるための小ねじですね）、はがし液でコーン部分を取ったりしてました。</p>
+<p>接着さえできてしまえば、あとは音を流し込むだけですね。<br />
+2台作ると、別々の音を流したり共振させて遊べたりもできると思います。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=864#respond" data-commentid="864" data-postid="1443" data-belowelement="div-comment-864" data-respondelement="respond" data-replyto="Hirotaka Niisato に返信" aria-label="Hirotaka Niisato に返信">返信</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-866">
+				<div id="div-comment-866" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/d44f4d936480731796aba13816a538e12f4183e2ae3946fff82514f1d00feafc?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/d44f4d936480731796aba13816a538e12f4183e2ae3946fff82514f1d00feafc?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">glon</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-866">2023-08-26 18:35</a>		</div>
+
+		<p>早速ご返信ありがとうございます！</p>
+<p>最初SUの接着剤を使ってしまい粘ついたのと接着性が弱かったので、確認でした。<br />
+そして瞬着で先ほど無事接着しましたが、傾かないように強く押し込んだ結果ボイスコイル部分を潰し今度は音が鳴らなくなってしまいました。笑</p>
+<p>何れにせよ、大変勉強になっております。<br />
+このような記事を公開してくださりありがとうございます。</p>
+<p>ついでにもう一点程お伺いさせていただきたく、<br />
+下部の支えの3Dプリンタは穴が最後まで空いていないのですがこちらは接着剤など使わず差し込み＋ワッシャー＋ナットのみで固定しているのでしょうか？<br />
+自分のやり方が悪いのか、少しぐらついてしまうことがあったため確認になります。</p>
+<p>もう少しスピーカーを買い込んでトライしてみます。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=866#respond" data-commentid="866" data-postid="1443" data-belowelement="div-comment-866" data-respondelement="respond" data-replyto="glon に返信" aria-label="glon に返信">返信</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2" id="comment-867">
+				<div id="div-comment-867" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/4aa15046e500f9118c6491f74b109531e73b6a308a3440227ec2fa5c20e5bf3f?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4aa15046e500f9118c6491f74b109531e73b6a308a3440227ec2fa5c20e5bf3f?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">Hirotaka Niisato</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-867">2023-08-26 19:06</a>		</div>
+
+		<p>ボイスコイル＆センターキャップの所は接着剤を塗ったら軽くフワッと平面になるように置く感じで、あとは自然乾燥でうまく出来ると思います。センターキャップ部分がつぶれても、ボイスコイルの所が生きていれば、振動でうまく出来るとは思います。（僕も何個か失敗してつぶしたり、壊したりもしました）</p>
+<p>一番下の円の土台ですが、ボルトの中にボンドを入れて接着させています。<br />
+ご指摘の最後まで穴を開けてない理由については、円形の土台として安定しているので、この部分は固定化させてしまおう、という所からです。<br />
+穴を貫通させて、土台の両面からナットで固定させても良いとは思いますが、その場合、全体を４点のナットか何かで支えることになって、振動＝音を出すと、全体がかなり不安定になるので、円形の土台で全体を支持させるため、４本の支柱部分と土台部分は完全に接着しています。</p>
+<p>ただ、穴を貫通させて、さらに下に土台を用意＆全体を支持させるようにしても良いとは思います。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=867#respond" data-commentid="867" data-postid="1443" data-belowelement="div-comment-867" data-respondelement="respond" data-replyto="Hirotaka Niisato に返信" aria-label="Hirotaka Niisato に返信">返信</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-876">
+				<div id="div-comment-876" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://secure.gravatar.com/avatar/d44f4d936480731796aba13816a538e12f4183e2ae3946fff82514f1d00feafc?s=32&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/d44f4d936480731796aba13816a538e12f4183e2ae3946fff82514f1d00feafc?s=64&#038;d=mm&#038;r=g 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy' decoding='async'/>			<cite class="fn">glon</cite> <span class="says">より:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-876">2023-08-29 09:26</a>		</div>
+
+		<p>Niisato さま</p>
+<p>ご返信遅くなりました。諸々詳細なご説明ありがとうございます！<br />
+大変綺麗に記事にまとまっていた為、自分でもそつなくできるイメージでしたが実際にやってみて至るところで創意工夫を感じ、大変勉強になりました。買うと数万円してしまうモノをこれだけ低コストで生産する方法を体系化し公開してくださり、感謝しかありません。<br />
+秋葉原でまたスピーカーを買いなおしてリトライしてみます。<br />
+本当にありがとうございます。</p>
+
+		<div class="reply"><a rel="nofollow" class="comment-reply-link" href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/?replytocom=876#respond" data-commentid="876" data-postid="1443" data-belowelement="div-comment-876" data-respondelement="respond" data-replyto="glon に返信" aria-label="glon に返信">返信</a></div>
+				</div>
+				</li><!-- #comment-## -->
+  	</ol>
+
+  	   
+  
+</div>
+<!-- /post-comments -->
+
+  <div class="comments-form">
+    <div class="comment-form">
+     		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/%E3%82%AF%E3%83%A9%E3%83%89%E3%83%8B%E5%9B%B3%E3%81%AE%E4%BD%9C%E3%82%8A%E3%81%8B%E3%81%9F/#respond" style="display:none;">コメントをキャンセル</a></small></h3><form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-notes"><span id="email-notes">メールアドレスが公開されることはありません。</span> <span class="required-field-message"><span class="required">※</span> が付いている欄は必須項目です</span></p><p class="comment-form-comment"><label for="comment">コメント <span class="required">※</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">名前 <span class="required">※</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required="required" /></p>
+<p class="comment-form-email"><label for="email">メール <span class="required">※</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required="required" /></p>
+<p class="comment-form-url"><label for="url">サイト</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200" autocomplete="url" /></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">次回のコメントで使用するためブラウザーに自分の名前、メールアドレス、サイトを保存する。</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="button blue small" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='1443' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="968238a6b7" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="68"/></p></form>	</div><!-- #respond -->
+	    </div>
+  </div>
+</div>
+                    </div>
+                </div>
+				        
+<div class="sidebar col-sm-4 col-md-3">
+    <div class="panel bg-color-white">
+        <div id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="/">
+    <label>
+        <span class="screen-reader-text">検索:</span>
+        <input type="search" class="search-field" placeholder="検索&hellip;" value="" name="s"/>
+    </label>
+</form>
+</div>
+		<div id="recent-posts-2" class="widget widget_recent_entries">
+		<h5 class="widgettitle">最近の投稿</h5>
+		<ul>
+											<li>
+					<a href="/handmade_qpu/">見えてきた自作QPU</a>
+									</li>
+											<li>
+					<a href="/openmpw_qpu/">OpenMPWで作るQPUの可能性</a>
+									</li>
+											<li>
+					<a href="/8-bit/">8 bit</a>
+									</li>
+											<li>
+					<a href="/risc-v-rvv-0-8-x-spike-pk/">RISC-V RVV 0.8.x spike/pk add K Extension</a>
+									</li>
+											<li>
+					<a href="/ogaki-mini-maker-faire-2020/">Ogaki Mini Maker Faire 2020</a>
+									</li>
+					</ul>
+
+		</div><div id="recent-comments-2" class="widget widget_recent_comments"><h5 class="widgettitle">最近のコメント</h5><ul id="recentcomments"><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-876">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-867">クラドニ図の作りかた</a> に <span class="comment-author-link">Hirotaka Niisato</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-866">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-864">クラドニ図の作りかた</a> に <span class="comment-author-link">Hirotaka Niisato</span> より</li><li class="recentcomments"><a href="/%e3%82%af%e3%83%a9%e3%83%89%e3%83%8b%e5%9b%b3%e3%81%ae%e4%bd%9c%e3%82%8a%e3%81%8b%e3%81%9f/#comment-863">クラドニ図の作りかた</a> に <span class="comment-author-link">glon</span> より</li></ul></div><div id="archives-2" class="widget widget_archive"><h5 class="widgettitle">アーカイブ</h5>
+			<ul>
+					<li><a href="/2023/12/">2023年12月</a></li>
+	<li><a href="/2022/12/">2022年12月</a></li>
+	<li><a href="/2022/01/">2022年1月</a></li>
+	<li><a href="/2021/01/">2021年1月</a></li>
+	<li><a href="/2020/12/">2020年12月</a></li>
+	<li><a href="/2020/11/">2020年11月</a></li>
+	<li><a href="/2020/06/">2020年6月</a></li>
+	<li><a href="/2020/03/">2020年3月</a></li>
+	<li><a href="/2020/02/">2020年2月</a></li>
+	<li><a href="/2020/01/">2020年1月</a></li>
+	<li><a href="/2019/12/">2019年12月</a></li>
+	<li><a href="/2019/11/">2019年11月</a></li>
+	<li><a href="/2019/10/">2019年10月</a></li>
+	<li><a href="/2019/09/">2019年9月</a></li>
+	<li><a href="/2019/08/">2019年8月</a></li>
+	<li><a href="/2019/07/">2019年7月</a></li>
+			</ul>
+
+			</div><div id="categories-2" class="widget widget_categories"><h5 class="widgettitle">カテゴリー</h5>
+			<ul>
+					<li class="cat-item cat-item-1"><a href="/category/%e6%9c%aa%e5%88%86%e9%a1%9e/">未分類</a>
+</li>
+			</ul>
+
+			</div><div id="meta-2" class="widget widget_meta"><h5 class="widgettitle">メタ情報</h5>
+		<ul>
+						<li><a href="/wp-login.php">ログイン</a></li>
+			<li><a href="/feed/">投稿フィード</a></li>
+			<li><a href="/comments/feed/">コメントフィード</a></li>
+
+			<li><a href="https://ja.wordpress.org/">WordPress.org</a></li>
+		</ul>
+
+		</div>    </div>
+</div>
+            </div>
+        </div>
+    </div>
+	<div  class='footer footer-simple'>
+    <div  class='footer-content center-xs'>
+        <div class="gridContainer">
+	        <div class="row middle-xs footer-content-row">
+	            <div class="footer-content-col col-xs-12">
+	                    <p  class="copyright">&copy;&nbsp;&nbsp;2026&nbsp;SIProp量子化計画.&nbsp;WordPress と<a target="_blank" href="https://extendthemes.com/go/built-with-highlight/" class="mesmerize-theme-link">Highlight Theme</a>を使って構築した</p>	            </div>
+	        </div>
+	    </div>
+    </div>
+</div>
+	</div>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/highlight/*","/wp-content/themes/mesmerize/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript"  defer="defer" src="/wp-includes/js/imagesloaded.min.js?ver=5.0.0" id="imagesloaded-js"></script>
+<script type="text/javascript"  defer="defer" src="/wp-includes/js/masonry.min.js?ver=4.2.2" id="masonry-js"></script>
+<script type="text/javascript"  defer="defer" src="/wp-content/themes/mesmerize/assets/js/theme.bundle.min.js?ver=1.0.13" id="mesmerize-theme-js"></script>
+<script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=6.9.4" id="comment-reply-js" async="async" data-wp-strategy="async" fetchpriority="low"></script>
+<script type="text/javascript" src="/wp-content/themes/highlight/assets/js/theme-child.js" id="theme-child-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.6" id="akismet-form-js"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://quantum.siprop.org/wp-includes/js/wp-emoji-release.min.js?ver=6.9.4"}}
+</script>
+<script type="module">
+/* <![CDATA[ */
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://quantum.siprop.org/wp-includes/js/wp-emoji-loader.min.js
+/* ]]> */
+</script>
+</body>
+</html>
